@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Card Gaming Hub — Browse card games, learn strategies, and get personalized recommendations." />
+  <title>Card Gaming Hub</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <header role="banner">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="Card Gaming Hub home">
+          <span class="suit" aria-hidden="true">♠</span>
+          Card Gaming Hub
+        </a>
+        <ul class="navbar__links" role="list">
+          <li><a href="index.html" class="active" aria-current="page">Home</a></li>
+          <li><a href="games.html">Games</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="recommendations.html">Picks</a></li>
+          <li><a href="about.html">Help</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── Main Content ── -->
+  <main id="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-title" style="
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 64px;
+    ">
+      <!-- Decorative floating suits -->
+      <span class="suit-float" aria-hidden="true" style="top:15%; left:8%; animation-delay:0s;">♠</span>
+      <span class="suit-float" aria-hidden="true" style="top:25%; right:10%; animation-delay:2s; font-size:2.5rem;">♥</span>
+      <span class="suit-float" aria-hidden="true" style="bottom:30%; left:15%; animation-delay:4s; font-size:1rem;">♦</span>
+      <span class="suit-float" aria-hidden="true" style="bottom:20%; right:18%; animation-delay:6s; font-size:2rem;">♣</span>
+      <span class="suit-float" aria-hidden="true" style="top:60%; left:40%; animation-delay:3s; font-size:1.2rem;">♠</span>
+
+      <!-- Background gradient -->
+      <div aria-hidden="true" style="
+        position:absolute; inset:0; z-index:0;
+        background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(201,168,76,0.07) 0%, transparent 70%);
+      "></div>
+
+      <div class="container" style="position:relative; z-index:1; padding-top: var(--space-2xl); padding-bottom: var(--space-2xl);">
+        <div style="max-width: 720px;">
+          <p class="page-hero__eyebrow anim-fade-in" style="margin-bottom: var(--space-md);">
+            ♠ ♥ ♦ ♣ &nbsp; Welcome to the Hub
+          </p>
+          <h1 id="hero-title" class="anim-fade-up delay-1" style="margin-bottom: var(--space-lg);">
+            Master Every<br>
+            <span class="accent">Card Game</span> at<br>
+            Your Table
+          </h1>
+          <p class="anim-fade-up delay-2" style="
+            font-size:1.15rem; color:var(--color-muted);
+            max-width:52ch; margin-bottom: var(--space-xl);
+          ">
+            Browse rules, explore strategies, and discover which game fits your style —
+            all in one clean, beginner-friendly hub.
+          </p>
+          <div class="anim-fade-up delay-3" style="display:flex; gap:var(--space-md); flex-wrap:wrap;">
+            <a href="games.html" class="btn btn--primary btn--lg">
+              Explore Games →
+            </a>
+            <a href="recommendations.html" class="btn btn--outline btn--lg">
+              Get Recommendations
+            </a>
+          </div>
+        </div>
+
+        <!-- Hero card demo -->
+        <div class="anim-fade-up delay-4" aria-hidden="true" style="
+          margin-top: var(--space-xl);
+          display: flex; gap: var(--space-lg); align-items: flex-end;
+        ">
+          <div class="flip-container" title="Hover to flip">
+            <div class="flip-card" tabindex="0" role="img" aria-label="Card: Ace of Spades — strategy card">
+              <div class="flip-card__face flip-card__front">
+                ♠
+                <span style="font-size:0.6rem; letter-spacing:.1em; position:absolute; bottom:6px; opacity:0.5; font-family:var(--font-body);">HOVER</span>
+              </div>
+              <div class="flip-card__face flip-card__back card-back-pattern">
+              </div>
+            </div>
+          </div>
+          <div class="flip-container" title="Hover to flip">
+            <div class="flip-card" tabindex="0" role="img" aria-label="Card: King of Hearts — strategy card">
+              <div class="flip-card__face flip-card__front red">
+                ♥
+              </div>
+              <div class="flip-card__face flip-card__back card-back-pattern">
+              </div>
+            </div>
+          </div>
+          <div class="flip-container" title="Hover to flip">
+            <div class="flip-card" tabindex="0" role="img" aria-label="Card: Queen of Diamonds — strategy card">
+              <div class="flip-card__face flip-card__front red">
+                ♦
+              </div>
+              <div class="flip-card__face flip-card__back card-back-pattern">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Games Section -->
+    <section class="section" aria-labelledby="featured-title">
+      <div class="container">
+        <h2 id="featured-title" class="anim-fade-up" style="margin-bottom: 0.5rem;">Featured Games</h2>
+        <p style="color:var(--color-muted); margin-bottom:var(--space-xl);" class="anim-fade-up delay-1">
+          Popular picks to get you started
+        </p>
+        <div class="card-grid">
+          <!-- Game Card 1 -->
+          <article class="game-card anim-fade-up delay-1">
+            <div class="game-card__visual">
+              <span aria-hidden="true">♠ ♥</span>
+            </div>
+            <div class="game-card__body">
+              <h3 class="game-card__title">Poker</h3>
+              <p class="game-card__desc">Bluff, bet, and read your opponents. The classic card game of skill and nerve.</p>
+              <div class="game-card__footer">
+                <span class="badge badge--hard">Hard</span>
+                <a href="strategy.html?game=poker" class="game-card__link">View Strategy →</a>
+              </div>
+            </div>
+          </article>
+          <!-- Game Card 2 -->
+          <article class="game-card anim-fade-up delay-2">
+            <div class="game-card__visual">
+              <span aria-hidden="true">♣ ♦</span>
+            </div>
+            <div class="game-card__body">
+              <h3 class="game-card__title">Blackjack</h3>
+              <p class="game-card__desc">Beat the dealer to 21 without going bust. Simple to learn, deep to master.</p>
+              <div class="game-card__footer">
+                <span class="badge badge--medium">Medium</span>
+                <a href="strategy.html?game=blackjack" class="game-card__link">View Strategy →</a>
+              </div>
+            </div>
+          </article>
+          <!-- Game Card 3 -->
+          <article class="game-card anim-fade-up delay-3">
+            <div class="game-card__visual">
+              <span aria-hidden="true">♥ ♦</span>
+            </div>
+            <div class="game-card__body">
+              <h3 class="game-card__title">Go Fish</h3>
+              <p class="game-card__desc">Ask, collect, and build sets. The perfect entry point for new card players.</p>
+              <div class="game-card__footer">
+                <span class="badge badge--easy">Easy</span>
+                <a href="strategy.html?game=gofish" class="game-card__link">View Strategy →</a>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div style="text-align:center; margin-top: var(--space-xl);">
+          <a href="games.html" class="btn btn--outline">View All Games →</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Quick Nav Cards Section -->
+    <section class="section" aria-labelledby="nav-section-title" style="background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+      <div class="container">
+        <h2 id="nav-section-title" class="anim-fade-up" style="margin-bottom: var(--space-xl);">Where Would You Like to Go?</h2>
+        <nav aria-label="Hub sections" class="card-grid">
+          <a href="games.html" class="nav-card anim-fade-up delay-1">
+            <span class="nav-card__icon" aria-hidden="true">🃏</span>
+            <span class="nav-card__title">Games Library</span>
+            <span class="nav-card__desc">Browse all card games with difficulty ratings</span>
+          </a>
+          <a href="strategy.html" class="nav-card anim-fade-up delay-2">
+            <span class="nav-card__icon" aria-hidden="true">♟</span>
+            <span class="nav-card__title">Strategy Table</span>
+            <span class="nav-card__desc">Turn-by-turn breakdowns and tips</span>
+          </a>
+          <a href="recommendations.html" class="nav-card anim-fade-up delay-3">
+            <span class="nav-card__icon" aria-hidden="true">✨</span>
+            <span class="nav-card__title">Get Picks</span>
+            <span class="nav-card__desc">Find your perfect game in 30 seconds</span>
+          </a>
+        </nav>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          ♠ Card Gaming Hub
+          <p>CSC 4370/6370 — Project 1</p>
+        </div>
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="games.html">Games</a>
+          <a href="strategy.html">Strategy</a>
+          <a href="recommendations.html">Recommendations</a>
+          <a href="about.html">Help</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        &copy; 2026 Card Gaming Hub. Built with HTML &amp; CSS only.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

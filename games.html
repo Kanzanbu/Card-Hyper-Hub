@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Browse all card games in the Card Gaming Hub library, with descriptions and difficulty levels." />
+  <title>Games Library — Card Gaming Hub</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <header role="banner">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="Card Gaming Hub home">
+          <span class="suit" aria-hidden="true">♠</span>
+          Card Gaming Hub
+        </a>
+        <ul class="navbar__links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="games.html" class="active" aria-current="page">Games</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="recommendations.html">Picks</a></li>
+          <li><a href="about.html">Help</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Page Hero -->
+    <section class="page-hero" aria-labelledby="games-title">
+      <div class="container">
+        <p class="page-hero__eyebrow">🃏 Browse</p>
+        <h1 id="games-title" class="page-hero__title anim-fade-up">Games Library</h1>
+        <p class="page-hero__subtitle anim-fade-up delay-1">
+          Explore our collection of card games, each rated by difficulty and paired with strategy guides.
+        </p>
+      </div>
+    </section>
+
+    <!-- Filter Bar -->
+    <section aria-label="Filter games" style="border-bottom: 1px solid var(--color-border); padding: var(--space-md) 0;">
+      <div class="container" style="display:flex; gap:var(--space-sm); flex-wrap:wrap; align-items:center;">
+        <span style="font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-muted); margin-right:var(--space-sm);">Filter:</span>
+        <button class="btn btn--outline filter-btn active" data-filter="all" aria-pressed="true" style="padding:4px 14px; font-size:0.8rem;">All</button>
+        <button class="btn btn--outline filter-btn" data-filter="easy" aria-pressed="false" style="padding:4px 14px; font-size:0.8rem;">Easy</button>
+        <button class="btn btn--outline filter-btn" data-filter="medium" aria-pressed="false" style="padding:4px 14px; font-size:0.8rem;">Medium</button>
+        <button class="btn btn--outline filter-btn" data-filter="hard" aria-pressed="false" style="padding:4px 14px; font-size:0.8rem;">Hard</button>
+      </div>
+    </section>
+
+    <!-- Games Grid -->
+    <section class="section" aria-labelledby="all-games-title">
+      <div class="container">
+        <h2 id="all-games-title" class="visually-hidden">All Games</h2>
+        <div class="card-grid" id="games-grid" role="list">
+
+          <!-- Poker -->
+          <article class="game-card anim-fade-up delay-1" role="listitem" data-difficulty="hard">
+            <div class="game-card__visual" style="background: linear-gradient(135deg, #1a1028, #2d1040);">
+              <span aria-hidden="true" style="font-size:3.5rem;">♠</span>
+            </div>
+            <div class="game-card__body">
+              <h3 class="game-card__title">Poker</h3>
+              <p class="game-card__desc">The ultimate game of skill, psychology, and probability. Master hand rankings, position, and bet sizing to outlast your opponents.</p>
+              <div class="game-card__footer">
+                <span class="badge badge--hard">Hard</span>
+                <a href="strategy.html?game=poker" class="game-card__link" aria-label="View Poker strategy">Strategy →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Blackjack -->
+          <article class="game-card anim-fade-up delay-2" role="listitem" data-difficulty="medium">
+            <div class="game-card__visual" style="background: linear-gradient(135deg, #102a1a, #1a4030);">
+              <span aria-hidden="true" style="font-size:3.5rem;">21</span>
+            </div>
+            <div class="game-card__body">
+              <h3 class="game-card__title">Blackjack</h3>
+              <p class="game-card__desc">Beat the dealer to 21 without going bust. Use basic strategy charts to reduce the house edge and improve your odds.</p>
+              <div class="game-card__footer">
+                <span class="badge badge--medium">Medium</span>
+                <a href="strategy.html?game=blackjack" class="game-card__link" aria-label="View Blackjack strategy">Strategy →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Go Fish -->
+          <article class="game-card anim-fade-up delay-3" role="listitem" data-difficulty="easy">
+            <div class="game-card__visual" style="background: linear-gradient(135deg, #0a2030, #103050);">
+              <span aria-hidden="true" style="font-size:3rem;">🐟</span>
+            </div>
+            <div class="game-card__body">
+              <h3 class="game-card__title">Go Fish</h3>
+              <p class="game-card__desc">Ask players for matching cards to build sets of four. A perfect introduction to card game mechanics and memory skills.</p>
+              <div class="game-card__footer">
+                <span class="badge badge--easy">Easy</span>
+                <a href="strategy.html?game=gofish" class="game-card__link" aria-label="View Go Fish strategy">Strategy →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Solitaire -->
+          <article class="game-card anim-fade-up delay-1" role="listitem" data-difficulty="easy">
+            <div class="game-card__visual" style="background: linear-gradient(135deg, #201020, #301828);">
+              <span aria-hidden="true" style="font-size:3rem;">♥ ♣</span>
+            </div>
+            <div class="game-card__body">
+              <h3 class="game-card__title">Solitaire</h3>
+              <p class="game-card__desc">The classic single-player game. Sort all cards into foundation piles by suit from Ace to King through strategic column moves.</p>
+              <div class="game-card__footer">
+                <span class="badge badge--easy">Easy</span>
+                <a href="strategy.html?game=solitaire" class="game-card__link" aria-label="View Solitaire strategy">Strategy →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Rummy -->
+          <article class="game-card anim-fade-up delay-2" role="listitem" data-difficulty="medium">
+            <div class="game-card__visual" style="background: linear-gradient(135deg, #201800, #302200);">
+              <span aria-hidden="true" style="font-size:3rem;">♦ ♠</span>
+            </div>
+            <div class="game-card__body">
+              <h3 class="game-card__title">Rummy</h3>
+              <p class="game-card__desc">Form melds of sets and sequences to empty your hand before opponents. A satisfying mix of planning and adaptability.</p>
+              <div class="game-card__footer">
+                <span class="badge badge--medium">Medium</span>
+                <a href="strategy.html?game=rummy" class="game-card__link" aria-label="View Rummy strategy">Strategy →</a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Bridge -->
+          <article class="game-card anim-fade-up delay-3" role="listitem" data-difficulty="hard">
+            <div class="game-card__visual" style="background: linear-gradient(135deg, #101020, #181828);">
+              <span aria-hidden="true" style="font-size:3rem;">🤝</span>
+            </div>
+            <div class="game-card__body">
+              <h3 class="game-card__title">Bridge</h3>
+              <p class="game-card__desc">The most strategic partnership card game. Bid to win tricks with your partner, using communication and deduction.</p>
+              <div class="game-card__footer">
+                <span class="badge badge--hard">Hard</span>
+                <a href="strategy.html?game=bridge" class="game-card__link" aria-label="View Bridge strategy">Strategy →</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          ♠ Card Gaming Hub
+          <p>CSC 4370/6370 — Project 1</p>
+        </div>
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="games.html">Games</a>
+          <a href="strategy.html">Strategy</a>
+          <a href="recommendations.html">Recommendations</a>
+          <a href="about.html">Help</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        &copy; 2026 Card Gaming Hub. Built with HTML &amp; CSS only.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
