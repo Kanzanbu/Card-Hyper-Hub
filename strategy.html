@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Interactive strategy tables for card games — turn flow, rules, and tips." />
+  <title>Strategy Table — Card Gaming Hub</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <header role="banner">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="Card Gaming Hub home">
+          <span class="suit" aria-hidden="true">♠</span>
+          Card Gaming Hub
+        </a>
+        <ul class="navbar__links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="games.html">Games</a></li>
+          <li><a href="strategy.html" class="active" aria-current="page">Strategy</a></li>
+          <li><a href="recommendations.html">Picks</a></li>
+          <li><a href="about.html">Help</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Page Hero -->
+    <section class="page-hero" aria-labelledby="strategy-title">
+      <div class="container">
+        <p class="page-hero__eyebrow">♟ Strategy</p>
+        <h1 id="strategy-title" class="page-hero__title anim-fade-up">Strategy Table</h1>
+        <p class="page-hero__subtitle anim-fade-up delay-1">
+          Step-by-step turn breakdowns, play zones, and pro tips for every game.
+        </p>
+      </div>
+    </section>
+
+    <!-- Game Selector -->
+    <section aria-label="Select a game" style="padding: var(--space-lg) 0; border-bottom: 1px solid var(--color-border);">
+      <div class="container">
+        <div role="tablist" aria-label="Select game strategy" style="display:flex; gap:var(--space-sm); flex-wrap:wrap;">
+          <button role="tab" class="btn btn--outline game-tab active" data-game="blackjack" aria-selected="true" aria-controls="strategy-panel">
+            Blackjack
+          </button>
+          <button role="tab" class="btn btn--outline game-tab" data-game="poker" aria-selected="false" aria-controls="strategy-panel">
+            Poker
+          </button>
+          <button role="tab" class="btn btn--outline game-tab" data-game="rummy" aria-selected="false" aria-controls="strategy-panel">
+            Rummy
+          </button>
+          <button role="tab" class="btn btn--outline game-tab" data-game="gofish" aria-selected="false" aria-controls="strategy-panel">
+            Go Fish
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Strategy Content -->
+    <section class="section" id="strategy-panel" role="tabpanel" aria-live="polite" aria-label="Game strategy content">
+      <div class="container">
+
+        <!-- Play Area Zones -->
+        <div style="margin-bottom: var(--space-xl);">
+          <h2 class="anim-fade-up" style="margin-bottom: var(--space-md); font-size:1.3rem;">
+            Play Area Zones
+            <span id="zone-game-name" class="accent" style="font-size:0.85rem; font-weight:400; margin-left:var(--space-sm);">— Blackjack</span>
+          </h2>
+          <div class="play-area anim-fade-up delay-1" id="play-zones">
+            <!-- Zones populated by JS or visible by default -->
+            <div class="zone">
+              <span class="zone__icon" aria-hidden="true">🂠</span>
+              <span class="zone__label">Dealer Zone</span>
+            </div>
+            <div class="zone" style="border-color: var(--color-accent-dim);">
+              <div aria-hidden="true" style="display:flex; gap:4px;">
+                <div class="mini-card red"><span class="mini-card__rank">K</span><span class="mini-card__suit">♥</span></div>
+                <div class="mini-card black"><span class="mini-card__rank">7</span><span class="mini-card__suit">♠</span></div>
+              </div>
+              <span class="zone__label">Player Hand</span>
+            </div>
+            <div class="zone">
+              <span class="zone__icon" aria-hidden="true">🪙</span>
+              <span class="zone__label">Bet Area</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Turn Indicator -->
+        <div class="anim-fade-up delay-2" style="
+          display:flex; gap:var(--space-md); align-items:center;
+          margin-bottom: var(--space-xl); flex-wrap:wrap;
+        ">
+          <span class="turn-indicator turn-indicator--active" aria-label="Current turn: Player">Player's Turn</span>
+          <span class="turn-indicator turn-indicator--waiting" aria-label="Waiting: Dealer">Dealer Waiting</span>
+          <span style="font-size:0.8rem; color:var(--color-muted);">Round 2 of a 5-round demo</span>
+        </div>
+
+        <!-- Strategy Table -->
+        <div class="anim-fade-up delay-3">
+          <h2 style="margin-bottom: var(--space-lg); font-size:1.3rem;">
+            Turn-by-Turn Flow
+            <span id="table-game-name" class="accent" style="font-size:0.85rem; font-weight:400; margin-left:var(--space-sm);">— Blackjack</span>
+          </h2>
+          <div class="strategy-table-wrapper">
+            <table class="strategy-table" id="strategy-table" aria-label="Blackjack strategy table">
+              <caption class="visually-hidden">Turn-by-turn Blackjack strategy breakdown</caption>
+              <thead>
+                <tr>
+                  <th scope="col">Turn / Phase</th>
+                  <th scope="col">Action</th>
+                  <th scope="col">Rule</th>
+                  <th scope="col">💡 Strategy Tip</th>
+                </tr>
+              </thead>
+              <tbody id="strategy-tbody">
+                <tr>
+                  <td class="turn-number">1 — Deal</td>
+                  <td>Dealer deals 2 cards to each player and themselves (1 face-down)</td>
+                  <td>Players see both their cards; dealer shows only 1</td>
+                  <td class="tip-cell">Note the dealer's upcard — it shapes every decision you'll make this round</td>
+                </tr>
+                <tr>
+                  <td class="turn-number">2 — Assess</td>
+                  <td>Calculate your hand total</td>
+                  <td>Face cards = 10; Aces = 1 or 11</td>
+                  <td class="tip-cell">A soft hand (with Ace) gives you more flexibility — use it</td>
+                </tr>
+                <tr>
+                  <td class="turn-number">3 — Hit / Stand</td>
+                  <td>Request another card (Hit) or keep your hand (Stand)</td>
+                  <td>If total exceeds 21, you bust and lose immediately</td>
+                  <td class="tip-cell">Always hit on 11 or less. Always stand on 17 or more</td>
+                </tr>
+                <tr>
+                  <td class="turn-number">4 — Double Down</td>
+                  <td>Double your bet and receive exactly one more card</td>
+                  <td>Only available on initial two-card hand</td>
+                  <td class="tip-cell">Double down on 10 or 11 when the dealer shows a weak card (2–6)</td>
+                </tr>
+                <tr>
+                  <td class="turn-number">5 — Dealer Turn</td>
+                  <td>Dealer flips their face-down card and must hit until 17</td>
+                  <td>Dealer must stand on 17 or higher</td>
+                  <td class="tip-cell">If dealer shows 2–6, they're likely to bust — don't risk your own bust</td>
+                </tr>
+                <tr>
+                  <td class="turn-number">6 — Resolve</td>
+                  <td>Compare totals — highest without busting wins</td>
+                  <td>Blackjack (Ace + 10-value) pays 3:2</td>
+                  <td class="tip-cell">Track wins and adjust bet sizing gradually — avoid chasing losses</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- Quick Tips Card Row -->
+    <section class="section" aria-labelledby="tips-title" style="background: var(--color-surface); border-top: 1px solid var(--color-border);">
+      <div class="container">
+        <h2 id="tips-title" class="anim-fade-up" style="margin-bottom: var(--space-xl);">Quick Tips</h2>
+        <div class="card-grid card-grid--2col">
+          <div class="rec-card anim-fade-up delay-1">
+            <h3 style="font-size:1rem; margin-bottom:var(--space-sm);">🎯 Know Basic Strategy</h3>
+            <p style="font-size:0.875rem; color:var(--color-muted);">Memorizing a basic strategy chart reduces the house edge to under 0.5% in Blackjack — the single best thing a beginner can do.</p>
+          </div>
+          <div class="rec-card anim-fade-up delay-2">
+            <h3 style="font-size:1rem; margin-bottom:var(--space-sm);">🃏 Card States Matter</h3>
+            <p style="font-size:0.875rem; color:var(--color-muted);">Pay attention to what cards have already been played. In many games, tracking visible cards gives you a significant advantage.</p>
+          </div>
+          <div class="rec-card anim-fade-up delay-3">
+            <h3 style="font-size:1rem; margin-bottom:var(--space-sm);">⏱ Manage Your Turns</h3>
+            <p style="font-size:0.875rem; color:var(--color-muted);">Don't rush decisions. Each action has consequences for the next turn — think one step ahead before committing.</p>
+          </div>
+          <div class="rec-card anim-fade-up delay-4">
+            <h3 style="font-size:1rem; margin-bottom:var(--space-sm);">📚 Study the Flow</h3>
+            <p style="font-size:0.875rem; color:var(--color-muted);">Understanding the full sequence of a round — deal, act, resolve — helps you anticipate options and avoid costly mistakes.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          ♠ Card Gaming Hub
+          <p>CSC 4370/6370 — Project 1</p>
+        </div>
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="games.html">Games</a>
+          <a href="strategy.html">Strategy</a>
+          <a href="recommendations.html">Recommendations</a>
+          <a href="about.html">Help</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        &copy; 2026 Card Gaming Hub. Built with HTML &amp; CSS only.
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
