@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Card Gaming Hub — Browse card games, learn strategies, and get personalized recommendations." />
-  <title>Card Gaming Hub</title>
+  <meta name="description" content="Card Hyper Hub — Browse card games, learn strategies, and get personalized recommendations." />
+  <title>Card Hyper Hub</title>
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
@@ -16,13 +16,13 @@
   <header role="banner">
     <nav class="navbar" aria-label="Main navigation">
       <div class="navbar__inner">
-        <a href="index.html" class="navbar__logo" aria-label="Card Gaming Hub home">
+          <a href="index.html" class="navbar__logo" aria-label="Card Hyper Hub home">
           <span class="suit" aria-hidden="true">♠</span>
-          Card Gaming Hub
+          Card Hyper Hub
         </a>
         <ul class="navbar__links" role="list">
           <li><a href="index.html" class="active" aria-current="page">Home</a></li>
-          <li><a href="play-area.html">Play Area</a></li>
+          <li><a href="game-lobby.html">Game Lobby</a></li>
           <li><a href="games.html">Games</a></li>
           <li><a href="strategy.html">Strategy</a></li>
           <li><a href="recommendations.html">Picks</a></li>
@@ -45,11 +45,11 @@
       padding-top: 64px;
     ">
       <!-- Decorative floating suits -->
-      <span class="suit-float" aria-hidden="true" style="top:15%; left:8%; animation-delay:0s;">♠</span>
-      <span class="suit-float" aria-hidden="true" style="top:25%; right:10%; animation-delay:2s; font-size:2.5rem;">♥</span>
-      <span class="suit-float" aria-hidden="true" style="bottom:30%; left:15%; animation-delay:4s; font-size:1rem;">♦</span>
-      <span class="suit-float" aria-hidden="true" style="bottom:20%; right:18%; animation-delay:6s; font-size:2rem;">♣</span>
-      <span class="suit-float" aria-hidden="true" style="top:60%; left:40%; animation-delay:3s; font-size:1.2rem;">♠</span>
+      <img class="suit-float" src="images/playing cards/ace_of_spades.png" alt="Ace of Spades" style="top:15%; left:8%; animation-delay:0s; width: 32px; height: 44px; object-fit: contain;">
+      <img class="suit-float" src="images/playing cards/king_of_hearts.png" alt="King of Hearts" style="top:25%; right:10%; animation-delay:2s; width: 64px; height: 88px; object-fit: contain;">
+      <img class="suit-float" src="images/playing cards/queen_of_diamonds.png" alt="Queen of Diamonds" style="bottom:30%; left:15%; animation-delay:4s; width: 32px; height: 44px; object-fit: contain;">
+      <img class="suit-float" src="images/playing cards/jack_of_clubs.png" alt="Jack of Clubs" style="bottom:20%; right:18%; animation-delay:6s; width: 64px; height: 88px; object-fit: contain;">
+      <img class="suit-float" src="images/playing cards/10_of_spades.png" alt="10 of Spades" style="top:60%; left:40%; animation-delay:3s; width: 32px; height: 44px; object-fit: contain;">
 
       <!-- Background gradient -->
       <div aria-hidden="true" style="
@@ -60,7 +60,7 @@
       <div class="container" style="position:relative; z-index:1; padding-top: var(--space-2xl); padding-bottom: var(--space-2xl);">
         <div style="max-width: 720px;">
           <p class="page-hero__eyebrow anim-fade-in" style="margin-bottom: var(--space-md);">
-            ♠ ♥ ♦ ♣ &nbsp; Welcome to the Hub
+            &nbsp; Welcome to the Hub
           </p>
           <h1 id="hero-title" class="anim-fade-up delay-1" style="margin-bottom: var(--space-lg);">
             Master Every<br>
@@ -92,7 +92,7 @@
           <div class="flip-container" title="Hover to flip">
             <div class="flip-card" tabindex="0" role="img" aria-label="Card: Ace of Spades — strategy card">
               <div class="flip-card__face flip-card__front">
-                ♠
+                <img src="images/playing cards/ace_of_spades.png" alt="Ace of Spades" style="width: 100%; height: 100%; object-fit: contain;">
                 <span style="font-size:0.6rem; letter-spacing:.1em; position:absolute; bottom:6px; opacity:0.5; font-family:var(--font-body);">HOVER</span>
               </div>
               <div class="flip-card__face flip-card__back card-back-pattern">
@@ -102,7 +102,7 @@
           <div class="flip-container" title="Hover to flip">
             <div class="flip-card" tabindex="0" role="img" aria-label="Card: King of Hearts — strategy card">
               <div class="flip-card__face flip-card__front red">
-                ♥
+                <img src="images/playing cards/king_of_hearts.png" alt="King of Hearts" style="width: 100%; height: 100%; object-fit: contain;">
               </div>
               <div class="flip-card__face flip-card__back card-back-pattern">
               </div>
@@ -111,7 +111,7 @@
           <div class="flip-container" title="Hover to flip">
             <div class="flip-card" tabindex="0" role="img" aria-label="Card: Queen of Diamonds — strategy card">
               <div class="flip-card__face flip-card__front red">
-                ♦
+                <img src="images/playing cards/queen_of_diamonds.png" alt="Queen of Diamonds" style="width: 100%; height: 100%; object-fit: contain;">
               </div>
               <div class="flip-card__face flip-card__back card-back-pattern">
               </div>
@@ -132,7 +132,8 @@
           <!-- Game Card 1 -->
           <article class="game-card anim-fade-up delay-1">
             <div class="game-card__visual">
-              <span aria-hidden="true">♠ ♥</span>
+              <img src="images/playing cards/king_of_spades.png" alt="King of Spades" style="width: 32px; height: 44px; object-fit: contain; margin-right: 4px;">
+              <img src="images/playing cards/king_of_hearts.png" alt="King of Hearts" style="width: 32px; height: 44px; object-fit: contain;">
             </div>
             <div class="game-card__body">
               <h3 class="game-card__title">Poker</h3>
@@ -146,7 +147,8 @@
           <!-- Game Card 2 -->
           <article class="game-card anim-fade-up delay-2">
             <div class="game-card__visual">
-              <span aria-hidden="true">♣ ♦</span>
+              <img src="images/playing cards/king_of_clubs.png" alt="King of Clubs" style="width: 32px; height: 44px; object-fit: contain; margin-right: 4px;">
+              <img src="images/playing cards/queen_of_diamonds.png" alt="Queen of Diamonds" style="width: 32px; height: 44px; object-fit: contain;">
             </div>
             <div class="game-card__body">
               <h3 class="game-card__title">Blackjack</h3>
@@ -160,7 +162,8 @@
           <!-- Game Card 3 -->
           <article class="game-card anim-fade-up delay-3">
             <div class="game-card__visual">
-              <span aria-hidden="true">♥ ♦</span>
+              <img src="images/playing cards/king_of_hearts.png" alt="King of Hearts" style="width: 32px; height: 44px; object-fit: contain; margin-right: 4px;">
+              <img src="images/playing cards/queen_of_diamonds.png" alt="Queen of Diamonds" style="width: 32px; height: 44px; object-fit: contain;">
             </div>
             <div class="game-card__body">
               <h3 class="game-card__title">Go Fish</h3>
@@ -209,12 +212,12 @@
     <div class="container">
       <div class="site-footer__inner">
         <div class="site-footer__brand">
-          ♠ Card Gaming Hub
+          ♠ Card Hyper Hub
           <p>CSC 4370/6370 — Project 1</p>
         </div>
         <nav class="site-footer__nav" aria-label="Footer navigation">
           <a href="index.html">Home</a>
-          <a href="play-area.html">Play Area</a>
+          <a href="game-lobby.html">Game Lobby</a>
           <a href="games.html">Games</a>
           <a href="strategy.html">Strategy</a>
           <a href="recommendations.html">Recommendations</a>
@@ -222,7 +225,7 @@
         </nav>
       </div>
       <div class="site-footer__bottom">
-        &copy; 2026 Card Gaming Hub. Built with HTML &amp; CSS only.
+        &copy; 2026 Card Hyper Hub. Built with HTML & CSS only.
       </div>
     </div>
   </footer>

@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Interactive strategy tables for card games — turn flow, rules, and tips." />
-  <title>Strategy Table — Card Gaming Hub</title>
+  <title>Strategy Table — Card Hyper Hub</title>
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
@@ -16,12 +16,13 @@
   <header role="banner">
     <nav class="navbar" aria-label="Main navigation">
       <div class="navbar__inner">
-        <a href="index.html" class="navbar__logo" aria-label="Card Gaming Hub home">
+        <a href="index.html" class="navbar__logo" aria-label="Card Hyper Hub home">
           <span class="suit" aria-hidden="true">♠</span>
-          Card Gaming Hub
+          Card Hyper Hub
         </a>
         <ul class="navbar__links" role="list">
           <li><a href="index.html">Home</a></li>
+          <li><a href="game-lobby.html">Game Lobby</a></li>
           <li><a href="games.html">Games</a></li>
           <li><a href="strategy.html" class="active" aria-current="page">Strategy</a></li>
           <li><a href="recommendations.html">Picks</a></li>
@@ -48,17 +49,23 @@
     <section aria-label="Select a game" style="padding: var(--space-lg) 0; border-bottom: 1px solid var(--color-border);">
       <div class="container">
         <div style="display:flex; gap:var(--space-sm); flex-wrap:wrap;">
+          <a href="strategy.html?game=gofish" class="btn btn--outline" style="padding:4px 14px; font-size:0.8rem;">
+            Go Fish
+          </a>
           <a href="strategy.html?game=blackjack" class="btn btn--outline active" style="padding:4px 14px; font-size:0.8rem;">
             Blackjack
           </a>
           <a href="strategy.html?game=poker" class="btn btn--outline" style="padding:4px 14px; font-size:0.8rem;">
             Poker
           </a>
-          <a href="strategy.html?game=rummy" class="btn btn--outline" style="padding:4px 14px; font-size:0.8rem;">
-            Rummy
+          <a href="play-area.html?game=gofish" class="btn btn--primary" style="padding:4px 14px; font-size:0.8rem; margin-left: var(--space-md);">
+            Play Go Fish
           </a>
-          <a href="strategy.html?game=gofish" class="btn btn--outline" style="padding:4px 14px; font-size:0.8rem;">
-            Go Fish
+          <a href="play-area.html?game=blackjack" class="btn btn--primary" style="padding:4px 14px; font-size:0.8rem;">
+            Play Blackjack
+          </a>
+          <a href="play-area.html?game=poker" class="btn btn--primary" style="padding:4px 14px; font-size:0.8rem;">
+            Play Poker
           </a>
         </div>
       </div>
@@ -82,8 +89,8 @@
             </div>
             <div class="zone" style="border-color: var(--color-accent-dim);">
               <div aria-hidden="true" style="display:flex; gap:4px;">
-                <div class="mini-card red"><span class="mini-card__rank">K</span><span class="mini-card__suit">♥</span></div>
-                <div class="mini-card black"><span class="mini-card__rank">7</span><span class="mini-card__suit">♠</span></div>
+                <img src="images/playing cards/king_of_hearts.png" alt="King of Hearts" style="width: 32px; height: 44px; object-fit: contain;">
+                <img src="images/playing cards/7_of_spades.png" alt="7 of Spades" style="width: 32px; height: 44px; object-fit: contain;">
               </div>
               <span class="zone__label">Player Hand</span>
             </div>
@@ -198,11 +205,12 @@
     <div class="container">
       <div class="site-footer__inner">
         <div class="site-footer__brand">
-          ♠ Card Gaming Hub
+          ♠ Card Hyper Hub
           <p>CSC 4370/6370 — Project 1</p>
         </div>
         <nav class="site-footer__nav" aria-label="Footer navigation">
           <a href="index.html">Home</a>
+          <a href="game-lobby.html">Game Lobby</a>
           <a href="games.html">Games</a>
           <a href="strategy.html">Strategy</a>
           <a href="recommendations.html">Recommendations</a>
@@ -210,7 +218,7 @@
         </nav>
       </div>
       <div class="site-footer__bottom">
-        &copy; 2026 Card Gaming Hub. Built with HTML &amp; CSS only.
+        &copy; 2026 Card Hyper Hub. Built with HTML & CSS only.
       </div>
     </div>
   </footer>

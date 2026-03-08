@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Card Game Play Area — Interactive zones, deck stacks, and turn indicators." />
-  <title>Play Area | Card Gaming Hub</title>
+  <title>Play Area | Card Hyper Hub</title>
   <link rel="stylesheet" href="css/base.css" />
   <link rel="stylesheet" href="css/layout.css" />
   <link rel="stylesheet" href="css/components.css" />
@@ -521,12 +521,13 @@
   <header role="banner">
     <nav class="navbar" aria-label="Main navigation">
       <div class="navbar__inner">
-        <a href="index.html" class="navbar__logo" aria-label="Card Gaming Hub home">
+        <a href="index.html" class="navbar__logo" aria-label="Card Hyper Hub home">
           <span class="suit" aria-hidden="true">♠</span>
-          Card Gaming Hub
+          Card Hyper Hub
         </a>
         <ul class="navbar__links" role="list">
           <li><a href="index.html">Home</a></li>
+          <li><a href="game-lobby.html">Game Lobby</a></li>
           <li><a href="games.html">Games</a></li>
           <li><a href="strategy.html">Strategy</a></li>
           <li><a href="recommendations.html">Picks</a></li>
@@ -571,28 +572,23 @@
           <div class="player-hand">
             <div class="hand-card red" onclick="toggleCard(this)">
               <span class="card-state">✓</span>
-              <span>♥</span>
-              <span>7</span>
+              <img src="images/playing cards/7_of_hearts.png" alt="7 of Hearts" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
             <div class="hand-card black" onclick="toggleCard(this)">
               <span class="card-state">✓</span>
-              <span>♠</span>
-              <span>K</span>
+              <img src="images/playing cards/king_of_spades.png" alt="King of Spades" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
             <div class="hand-card red" onclick="toggleCard(this)">
               <span class="card-state">✓</span>
-              <span>♦</span>
-              <span>3</span>
+              <img src="images/playing cards/3_of_diamonds.png" alt="3 of Diamonds" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
             <div class="hand-card black" onclick="toggleCard(this)">
               <span class="card-state">✓</span>
-              <span>♣</span>
-              <span>10</span>
+              <img src="images/playing cards/10_of_clubs.png" alt="10 of Clubs" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
             <div class="hand-card red" onclick="toggleCard(this)">
               <span class="card-state">✓</span>
-              <span>♥</span>
-              <span>A</span>
+              <img src="images/playing cards/ace_of_hearts.png" alt="Ace of Hearts" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
           </div>
         </div>
@@ -608,23 +604,19 @@
           <div class="player-hand">
             <div class="hand-card black" onclick="toggleCard(this)">
               <span class="card-state">✓</span>
-              <span>♠</span>
-              <span>5</span>
+              <img src="images/playing cards/5_of_spades.png" alt="5 of Spades" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
             <div class="hand-card red" onclick="toggleCard(this)">
               <span class="card-state">✓</span>
-              <span>♦</span>
-              <span>Q</span>
+              <img src="images/playing cards/queen_of_diamonds.png" alt="Queen of Diamonds" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
             <div class="hand-card black" onclick="toggleCard(this)">
               <span class="card-state">✓</span>
-              <span>♣</span>
-              <span>2</span>
+              <img src="images/playing cards/2_of_clubs.png" alt="2 of Clubs" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
             <div class="hand-card red" onclick="toggleCard(this)">
               <span class="card-state">✓</span>
-              <span>♥</span>
-              <span>9</span>
+              <img src="images/playing cards/9_of_hearts.png" alt="9 of Hearts" style="width: 100%; height: 100%; object-fit: contain;">
             </div>
           </div>
         </div>
@@ -635,11 +627,11 @@
         <div class="deck-stack">
           <div class="deck-stack-label">Draw Pile</div>
           <div class="card-stack draw-pile">
-            <div class="card black">♠</div>
-            <div class="card red">♥</div>
-            <div class="card black">♣</div>
-            <div class="card red">♦</div>
-            <div class="card black">♠</div>
+            <img class="card black" src="images/playing cards/king_of_spades.png" alt="King of Spades" style="width: 100%; height: 100%; object-fit: contain;">
+            <img class="card red" src="images/playing cards/king_of_hearts.png" alt="King of Hearts" style="width: 100%; height: 100%; object-fit: contain;">
+            <img class="card black" src="images/playing cards/king_of_clubs.png" alt="King of Clubs" style="width: 100%; height: 100%; object-fit: contain;">
+            <img class="card red" src="images/playing cards/queen_of_diamonds.png" alt="Queen of Diamonds" style="width: 100%; height: 100%; object-fit: contain;">
+            <img class="card black" src="images/playing cards/jack_of_spades.png" alt="Jack of Spades" style="width: 100%; height: 100%; object-fit: contain;">
           </div>
           <div style="font-size: 0.7rem; color: var(--color-muted);">24 cards</div>
         </div>
@@ -647,11 +639,11 @@
         <div class="deck-stack">
           <div class="deck-stack-label">Discard Pile</div>
           <div class="card-stack discard-pile">
-            <div class="card red">♥</div>
-            <div class="card black">♠</div>
-            <div class="card red">♦</div>
-            <div class="card black">♣</div>
-            <div class="card red">♥</div>
+            <img class="card red" src="images/playing cards/king_of_hearts.png" alt="King of Hearts" style="width: 100%; height: 100%; object-fit: contain;">
+            <img class="card black" src="images/playing cards/king_of_spades.png" alt="King of Spades" style="width: 100%; height: 100%; object-fit: contain;">
+            <img class="card red" src="images/playing cards/queen_of_diamonds.png" alt="Queen of Diamonds" style="width: 100%; height: 100%; object-fit: contain;">
+            <img class="card black" src="images/playing cards/king_of_clubs.png" alt="King of Clubs" style="width: 100%; height: 100%; object-fit: contain;">
+            <img class="card red" src="images/playing cards/jack_of_hearts.png" alt="Jack of Hearts" style="width: 100%; height: 100%; object-fit: contain;">
           </div>
           <div style="font-size: 0.7rem; color: var(--color-muted);">8 cards</div>
         </div>
@@ -680,32 +672,6 @@
           </div>
         </div>
 
-        <!-- Play Field Visualization -->
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--space-lg); margin-top: var(--space-xl);">
-          <div class="zone">
-            <div class="zone__icon">🃏</div>
-            <div class="zone__label">Community Cards</div>
-            <div style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--color-muted);">
-              0 cards played
-            </div>
-          </div>
-          
-          <div class="zone">
-            <div class="zone__icon">💰</div>
-            <div class="zone__label">Pot</div>
-            <div style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--color-muted);">
-              50 chips
-            </div>
-          </div>
-          
-          <div class="zone">
-            <div class="zone__icon">📊</div>
-            <div class="zone__label">Game Status</div>
-            <div style="margin-top: var(--space-sm); font-size: 0.8rem; color: var(--color-muted);">
-              Turn 3 of 10
-            </div>
-          </div>
-        </div>
       </div>
 
     </div>
@@ -716,12 +682,12 @@
     <div class="container">
       <div class="site-footer__inner">
         <div class="site-footer__brand">
-          ♠ Card Gaming Hub
+          ♠ Card Hyper Hub
           <p>CSC 4370/6370 — Project 1</p>
         </div>
         <nav class="site-footer__nav" aria-label="Footer navigation">
           <a href="index.html">Home</a>
-          <a href="play-area.html">Play Area</a>
+          <a href="game-lobby.html">Game Lobby</a>
           <a href="games.html">Games</a>
           <a href="strategy.html">Strategy</a>
           <a href="recommendations.html">Recommendations</a>
@@ -729,7 +695,7 @@
         </nav>
       </div>
       <div class="site-footer__bottom">
-        &copy; 2026 Card Gaming Hub. Built with HTML & CSS only.
+        &copy; 2026 Card Hyper Hub. Built with HTML & CSS only.
       </div>
     </div>
   </footer>
@@ -749,49 +715,28 @@
       discardPile: []
     };
 
-    // Game configurations
+    // Game configurations - 3 Card Game Focus
     const gameConfigs = {
-      poker: {
-        name: 'Poker',
-        color: 'var(--color-accent)',
-        actions: ['Check', 'Bet', 'Raise', 'Call', 'Fold'],
-        zones: ['Community Cards', 'Pot', 'Game Status'],
-        instructions: 'Poker: Form the best 5-card hand using your hole cards and community cards. Bet strategically and bluff your opponents!'
+      gofish: {
+        name: 'Go Fish',
+        color: 'var(--color-accent-dim)',
+        actions: ['Ask for Card', 'Draw', 'Make Set'],
+        zones: ['Player Hands', 'Draw Pile', 'Completed Sets'],
+        instructions: 'Go Fish: Ask opponents for matching cards to make sets of 4. If they don\'t have it, go fish from the deck! Perfect for beginners learning card matching.'
       },
       blackjack: {
         name: 'Blackjack',
         color: 'var(--color-green)',
         actions: ['Hit', 'Stand', 'Double Down', 'Split'],
         zones: ['Dealer Zone', 'Player Hand', 'Bet Area'],
-        instructions: 'Blackjack: Get as close to 21 as possible without going over. Beat the dealer\'s hand to win!'
+        instructions: 'Blackjack: Get as close to 21 as possible without going over. Beat the dealer\'s hand to win! Use strategy to maximize your odds.'
       },
-      gofish: {
-        name: 'Go Fish',
-        color: 'var(--color-accent-dim)',
-        actions: ['Ask for Card', 'Draw', 'Make Set'],
-        zones: ['Player Hands', 'Draw Pile', 'Completed Sets'],
-        instructions: 'Go Fish: Ask opponents for cards to make sets of 4. If they don\'t have it, go fish from the deck!'
-      },
-      solitaire: {
-        name: 'Solitaire',
-        color: 'var(--color-muted)',
-        actions: ['Draw', 'Move to Foundation', 'Move to Tableau'],
-        zones: ['Stock Pile', 'Waste Pile', 'Tableau', 'Foundation'],
-        instructions: 'Solitaire: Single player game. Sort all cards into foundation piles by suit from Ace to King.'
-      },
-      rummy: {
-        name: 'Rummy',
-        color: 'var(--color-blue)',
-        actions: ['Draw', 'Lay Off', 'Meld', 'Discard'],
-        zones: ['Player Hands', 'Meld Area', 'Discard Pile'],
-        instructions: 'Rummy: Form melds of sets and sequences. Be the first to empty your hand!'
-      },
-      bridge: {
-        name: 'Bridge',
-        color: 'var(--color-red)',
-        actions: ['Bid', 'Play Card', 'Follow Suit'],
-        zones: ['Bidding Area', 'Trick Pile', 'Partner Communication'],
-        instructions: 'Bridge: Partnership game with bidding and trick-taking. Communicate with your partner through play!'
+      poker: {
+        name: 'Poker',
+        color: 'var(--color-accent)',
+        actions: ['Check', 'Bet', 'Raise', 'Call', 'Fold'],
+        zones: ['Community Cards', 'Pot', 'Game Status'],
+        instructions: 'Poker: Form the best 5-card hand using your hole cards and community cards. Bet strategically and bluff your opponents! Master psychology and probability.'
       }
     };
 
@@ -1018,51 +963,85 @@
           message = `Drawing card for ${config.name}...`;
           gameState.player1.hand.push(...generateRandomHand(1));
           updatePlayerHands();
+          switchToPlayer2();
           break;
         case 'play':
           message = `Playing selected cards in ${config.name}...`;
+          switchToPlayer2();
           break;
         case 'discard':
           message = `Discarding selected cards...`;
+          switchToPlayer2();
           break;
         case 'pass':
           message = `Passing turn to next player...`;
           gameState.turn++;
           updateGameStatus();
+          switchToPlayer2();
           break;
         case 'hit':
           message = `Hit! Drawing another card...`;
           gameState.player1.hand.push(...generateRandomHand(1));
           updatePlayerHands();
+          switchToPlayer2();
           break;
         case 'stand':
           message = `Standing with current hand...`;
+          switchToPlayer2();
           break;
         case 'double':
           message = `Doubling down! Increasing bet...`;
           gameState.pot += 20;
           updateGameStatus();
+          switchToPlayer2();
           break;
         case 'split':
           message = `Splitting hand into two...`;
+          switchToPlayer2();
           break;
         case 'ask':
           message = `Asking opponent for a card...`;
+          switchToPlayer2();
           break;
         case 'make':
           message = `Making a set of four...`;
+          switchToPlayer2();
           break;
         case 'bid':
           message = `Making a bid...`;
+          switchToPlayer2();
           break;
         case 'follow':
           message = `Following suit...`;
+          switchToPlayer2();
           break;
         default:
           message = `${action.charAt(0).toUpperCase() + action.slice(1)} action performed!`;
+          switchToPlayer2();
       }
       
       alert(message);
+    }
+
+    // Switch turn to Player 2 after Player 1's action
+    function switchToPlayer2() {
+      const player1Zone = document.querySelector('.player-zone.active');
+      const player2Zone = document.querySelector('.player-zone:not(.active)');
+      const turnText = document.querySelector('.turn-status span');
+      
+      // Toggle active states
+      player1Zone.classList.remove('active');
+      player2Zone.classList.add('active');
+      
+      // Update turn indicator text
+      turnText.textContent = "Player 2's Turn";
+      
+      // Update player scores to show current player's perspective
+      const p1Score = player1Zone.querySelector('.player-score');
+      const p2Score = player2Zone.querySelector('.player-score');
+      
+      p1Score.textContent = "Score: 8";
+      p2Score.textContent = "Score: 15";
     }
 
     // Add keyboard shortcuts

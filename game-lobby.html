@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Card Hyper Hub Game Lobby — Select and launch card games with real-time player status." />
+  <title>Game Lobby — Card Hyper Hub</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <style>
+    /* Game Lobby Specific Styles */
+    .lobby-container {
+      min-height: 100vh;
+      background: linear-gradient(180deg, #0d0d0f 0%, #121215 100%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lobby-container::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-image: 
+        radial-gradient(circle at 20% 20%, rgba(201,168,76,0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(76,201,138,0.1) 0%, transparent 50%),
+        linear-gradient(45deg, transparent 49%, rgba(255,255,255,0.03) 50%, transparent 51%);
+      background-size: 100% 100%, 100% 100%, 50px 50px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .lobby-header {
+      position: relative;
+      z-index: 2;
+      padding: var(--space-xl) 0;
+      text-align: center;
+    }
+
+    .lobby-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 900;
+      margin-bottom: var(--space-sm);
+      background: linear-gradient(135deg, var(--color-accent), var(--color-green));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lobby-subtitle {
+      color: var(--color-muted);
+      font-size: 1.1rem;
+      margin-bottom: var(--space-xl);
+    }
+
+    .lobby-stats {
+      display: flex;
+      gap: var(--space-lg);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-bottom: var(--space-xl);
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 12px;
+      padding: var(--space-md);
+      text-align: center;
+      min-width: 120px;
+    }
+
+    .stat-value {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--color-accent);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .games-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-lg);
+      position: relative;
+      z-index: 2;
+      padding: 0 var(--space-lg) var(--space-2xl);
+    }
+
+    .game-card-lobby {
+      background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 16px;
+      padding: var(--space-lg);
+      transition: all var(--transition-base);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .game-card-lobby::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(201,168,76,0.05), rgba(76,201,138,0.05));
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+    }
+
+    .game-card-lobby:hover {
+      transform: translateY(-4px);
+      border-color: rgba(201,168,76,0.5);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+
+    .game-card-lobby:hover::before {
+      opacity: 1;
+    }
+
+    .game-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: var(--space-md);
+    }
+
+    .game-title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .game-difficulty {
+      font-size: 0.7rem;
+      padding: 4px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--color-muted);
+      background: rgba(0,0,0,0.3);
+    }
+
+    .game-description {
+      color: var(--color-muted);
+      margin-bottom: var(--space-lg);
+      line-height: 1.6;
+    }
+
+    .game-actions {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .btn-lobby {
+      flex: 1;
+      min-width: 120px;
+      padding: var(--space-sm) var(--space-md);
+      border-radius: 8px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      transition: all var(--transition-fast);
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-lobby-primary {
+      background: linear-gradient(135deg, var(--color-accent), #d4b46a);
+      color: #0d0d0f;
+      border: 1px solid rgba(201,168,76,0.5);
+    }
+
+    .btn-lobby-primary:hover {
+      filter: brightness(1.1);
+      transform: translateY(-2px);
+    }
+
+    .btn-lobby-outline {
+      background: transparent;
+      color: var(--color-text);
+      border: 1px solid rgba(255,255,255,0.3);
+    }
+
+    .btn-lobby-outline:hover {
+      border-color: var(--color-accent);
+      background: rgba(201,168,76,0.1);
+    }
+
+    .game-features {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+
+    .feature-tag {
+      font-size: 0.7rem;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: var(--color-muted);
+      background: rgba(0,0,0,0.3);
+    }
+
+    .player-status {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-md);
+      font-size: 0.8rem;
+      color: var(--color-muted);
+    }
+
+    .status-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--color-green);
+      box-shadow: 0 0 8px var(--color-green);
+      display: inline-block;
+    }
+
+    .status-indicator.busy {
+      background: var(--color-red);
+      box-shadow: 0 0 8px var(--color-red);
+    }
+
+    .status-indicator.waiting {
+      background: var(--color-accent);
+      box-shadow: 0 0 8px var(--color-accent);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+
+    .quick-actions {
+      position: fixed;
+      bottom: var(--space-lg);
+      right: var(--space-lg);
+      display: flex;
+      gap: var(--space-sm);
+      z-index: 100;
+    }
+
+    .quick-btn {
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: var(--color-text);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: 8px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      transition: all var(--transition-fast);
+    }
+
+    .quick-btn:hover {
+      background: var(--color-accent);
+      color: #0d0d0f;
+      border-color: var(--color-accent);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .games-grid {
+        grid-template-columns: 1fr;
+        padding: 0 var(--space-md) var(--space-xl);
+      }
+      
+      .lobby-stats {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .quick-actions {
+        bottom: var(--space-md);
+        right: var(--space-md);
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <header role="banner">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="Card Hyper Hub home">
+          <span class="suit" aria-hidden="true">♠</span>
+          Card Hyper Hub
+        </a>
+        <ul class="navbar__links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="game-lobby.html" class="active" aria-current="page">Game Lobby</a></li>
+          <li><a href="games.html">Games</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="recommendations.html">Picks</a></li>
+          <li><a href="about.html">Help</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ── Game Lobby ── -->
+  <main id="main-content" class="lobby-container">
+    
+    <div class="lobby-header">
+      <h1 class="lobby-title">🎮 Game Lobby</h1>
+      <p class="lobby-subtitle">Select a game to start playing. View player status and game availability.</p>
+      
+      <div class="lobby-stats">
+        <div class="stat-card">
+          <span class="stat-value" id="online-players">12</span>
+          <span class="stat-label">Online Players</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="active-games">8</span>
+          <span class="stat-label">Active Games</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value" id="waiting-players">4</span>
+          <span class="stat-label">Waiting</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Games Grid -->
+    <div class="games-grid">
+      
+      <!-- Go Fish Game Card -->
+      <article class="game-card-lobby">
+        <div class="game-header">
+          <div class="game-title">
+            <span aria-hidden="true">🐟</span>
+            Go Fish
+          </div>
+          <span class="game-difficulty">Easy</span>
+        </div>
+        <p class="game-description">
+          Perfect for beginners! Ask opponents for matching cards to build sets of four. 
+          Simple rules with memory-building fun for 2-6 players.
+        </p>
+        <div class="game-actions">
+          <button class="btn-lobby btn-lobby-primary" onclick="launchGame('gofish', 'Quick Match')">
+            Quick Match
+          </button>
+          <a href="play-area.html?game=gofish" class="btn-lobby btn-lobby-outline">
+            Play Solo
+          </a>
+          <a href="strategy.html?game=gofish" class="btn-lobby btn-lobby-outline">
+            View Strategy
+          </a>
+        </div>
+        <div class="game-features">
+          <span class="feature-tag">2-6 players</span>
+          <span class="feature-tag">5-15 min</span>
+          <span class="feature-tag">Memory</span>
+          <span class="feature-tag">Beginner</span>
+        </div>
+        <div class="player-status">
+          <span class="status-indicator waiting"></span>
+          <span>4 players waiting • 2 games available</span>
+        </div>
+      </article>
+
+      <!-- Blackjack Game Card -->
+      <article class="game-card-lobby">
+        <div class="game-header">
+          <div class="game-title">
+            <span aria-hidden="true">21</span>
+            Blackjack
+          </div>
+          <span class="game-difficulty">Medium</span>
+        </div>
+        <p class="game-description">
+          Beat the dealer to 21 without going bust! Strategic decisions with probability 
+          calculations for 1-4 players. Perfect blend of luck and skill.
+        </p>
+        <div class="game-actions">
+          <button class="btn-lobby btn-lobby-primary" onclick="launchGame('blackjack', 'Dealer Mode')">
+            Dealer Mode
+          </button>
+          <a href="play-area.html?game=blackjack" class="btn-lobby btn-lobby-outline">
+            Play Solo
+          </a>
+          <a href="strategy.html?game=blackjack" class="btn-lobby btn-lobby-outline">
+            View Strategy
+          </a>
+        </div>
+        <div class="game-features">
+          <span class="feature-tag">1-4 players</span>
+          <span class="feature-tag">15-30 min</span>
+          <span class="feature-tag">Strategy</span>
+          <span class="feature-tag">Probability</span>
+        </div>
+        <div class="player-status">
+          <span class="status-indicator"></span>
+          <span>2 players online • 3 tables open</span>
+        </div>
+      </article>
+
+      <!-- Poker Game Card -->
+      <article class="game-card-lobby">
+        <div class="game-header">
+          <div class="game-title">
+            <img src="images/playing cards/king_of_spades.png" alt="King of Spades" style="width: 32px; height: 32px; object-fit: contain;">
+            Poker
+          </div>
+          <span class="game-difficulty">Hard</span>
+        </div>
+        <p class="game-description">
+          The ultimate game of skill, psychology, and probability. Master hand rankings, 
+          position, and bet sizing to outlast opponents. 2-10 players recommended.
+        </p>
+        <div class="game-actions">
+          <button class="btn-lobby btn-lobby-primary" onclick="launchGame('poker', 'Tournament')">
+            Tournament
+          </button>
+          <a href="play-area.html?game=poker" class="btn-lobby btn-lobby-outline">
+            Play Solo
+          </a>
+          <a href="strategy.html?game=poker" class="btn-lobby btn-lobby-outline">
+            View Strategy
+          </a>
+        </div>
+        <div class="game-features">
+          <span class="feature-tag">2-10 players</span>
+          <span class="feature-tag">30+ min</span>
+          <span class="feature-tag">Psychology</span>
+          <span class="feature-tag">Advanced</span>
+        </div>
+        <div class="player-status">
+          <span class="status-indicator busy"></span>
+          <span>8 players busy • Tournament starting</span>
+        </div>
+      </article>
+
+      <!-- Solitaire Game Card -->
+      <article class="game-card-lobby">
+        <div class="game-header">
+          <div class="game-title">
+            <span aria-hidden="true">🧩</span>
+            Solitaire
+          </div>
+          <span class="game-difficulty">Easy</span>
+        </div>
+        <p class="game-description">
+          Classic single-player card game. Build foundation piles by suit from Ace to King. 
+          Perfect for solo play and improving concentration.
+        </p>
+        <div class="game-actions">
+          <button class="btn-lobby btn-lobby-primary" onclick="launchGame('solitaire', 'Classic Mode')">
+            Classic Mode
+          </button>
+          <a href="play-area.html?game=solitaire" class="btn-lobby btn-lobby-outline">
+            Play Now
+          </a>
+          <a href="strategy.html?game=solitaire" class="btn-lobby btn-lobby-outline">
+            Tips & Tricks
+          </a>
+        </div>
+        <div class="game-features">
+          <span class="feature-tag">Solo play</span>
+          <span class="feature-tag">5-20 min</span>
+          <span class="feature-tag">Patience</span>
+          <span class="feature-tag">Relaxing</span>
+        </div>
+        <div class="player-status">
+          <span class="status-indicator"></span>
+          <span>Always available • No waiting</span>
+        </div>
+      </article>
+
+      <!-- Rummy Game Card -->
+      <article class="game-card-lobby">
+        <div class="game-header">
+          <div class="game-title">
+            <span aria-hidden="true">🃏</span>
+            Rummy
+          </div>
+          <span class="game-difficulty">Medium</span>
+        </div>
+        <p class="game-description">
+          Form sets and runs with your cards. Strategic meld-building game for 2-6 players. 
+          Combine luck with tactical thinking for maximum fun.
+        </p>
+        <div class="game-actions">
+          <button class="btn-lobby btn-lobby-primary" onclick="launchGame('rummy', 'Quick Game')">
+            Quick Game
+          </button>
+          <a href="play-area.html?game=rummy" class="btn-lobby btn-lobby-outline">
+            Play Solo
+          </a>
+          <a href="strategy.html?game=rummy" class="btn-lobby btn-lobby-outline">
+            View Strategy
+          </a>
+        </div>
+        <div class="game-features">
+          <span class="feature-tag">2-6 players</span>
+          <span class="feature-tag">20-45 min</span>
+          <span class="feature-tag">Sets & Runs</span>
+          <span class="feature-tag">Tactical</span>
+        </div>
+        <div class="player-status">
+          <span class="status-indicator waiting"></span>
+          <span>3 players waiting • 1 game forming</span>
+        </div>
+      </article>
+
+      <!-- Bridge Game Card -->
+      <article class="game-card-lobby">
+        <div class="game-header">
+          <div class="game-title">
+            <span aria-hidden="true">🌉</span>
+            Bridge
+          </div>
+          <span class="game-difficulty">Hard</span>
+        </div>
+        <p class="game-description">
+          The ultimate partnership card game. Bidding, declarer play, and defense require 
+          deep strategy and communication. 4 players, 2 teams.
+        </p>
+        <div class="game-actions">
+          <button class="btn-lobby btn-lobby-primary" onclick="launchGame('bridge', 'Partnership')">
+            Find Partners
+          </button>
+          <a href="play-area.html?game=bridge" class="btn-lobby btn-lobby-outline">
+            Learn Rules
+          </a>
+          <a href="strategy.html?game=bridge" class="btn-lobby btn-lobby-outline">
+            Advanced Strategy
+          </a>
+        </div>
+        <div class="game-features">
+          <span class="feature-tag">4 players</span>
+          <span class="feature-tag">30-60 min</span>
+          <span class="feature-tag">Partnership</span>
+          <span class="feature-tag">Expert</span>
+        </div>
+        <div class="player-status">
+          <span class="status-indicator busy"></span>
+          <span>4 players busy • Partnership forming</span>
+        </div>
+      </article>
+
+    </div>
+
+  </main>
+
+  <!-- ── Quick Actions ── -->
+  <div class="quick-actions">
+    <a href="games.html" class="quick-btn">Browse All Games</a>
+    <a href="recommendations.html" class="quick-btn">Get Recommendations</a>
+    <a href="strategy.html" class="quick-btn">View Strategies</a>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          ♠ Card Hyper Hub
+          <p>CSC 4370/6370 — Project 1</p>
+        </div>
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="game-lobby.html">Game Lobby</a>
+          <a href="games.html">Games</a>
+          <a href="strategy.html">Strategy</a>
+          <a href="recommendations.html">Recommendations</a>
+          <a href="about.html">Help</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        &copy; 2026 Card Hyper Hub. Built with HTML & CSS only.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Game lobby functionality
+    let onlinePlayers = 12;
+    let activeGames = 8;
+    let waitingPlayers = 4;
+
+    // Update stats with animation
+    function updateStats() {
+      const onlineEl = document.getElementById('online-players');
+      const activeEl = document.getElementById('active-games');
+      const waitingEl = document.getElementById('waiting-players');
+
+      // Simulate real-time updates
+      const interval = setInterval(() => {
+        onlinePlayers += Math.floor(Math.random() * 3) - 1;
+        activeGames += Math.floor(Math.random() * 2) - 1;
+        waitingPlayers += Math.floor(Math.random() * 2) - 1;
+
+        // Keep values reasonable
+        onlinePlayers = Math.max(5, Math.min(25, onlinePlayers));
+        activeGames = Math.max(3, Math.min(15, activeGames));
+        waitingPlayers = Math.max(0, Math.min(10, waitingPlayers));
+
+        onlineEl.textContent = onlinePlayers;
+        activeEl.textContent = activeGames;
+        waitingEl.textContent = waitingPlayers;
+      }, 3000);
+    }
+
+    // Launch game function
+    function launchGame(game, mode) {
+      const messages = {
+        'gofish': 'Finding opponents for Go Fish...',
+        'blackjack': 'Shuffling cards for Blackjack...',
+        'poker': 'Dealing hands for Poker Tournament...',
+        'solitaire': 'Setting up Solitaire...',
+        'rummy': 'Forming Rummy game...',
+        'bridge': 'Finding Bridge partners...'
+      };
+
+      alert(`${messages[game]} Starting ${mode}...`);
+      
+      // Redirect to play area with game parameter
+      window.location.href = `play-area.html?game=${game}&mode=${encodeURIComponent(mode)}`;
+    }
+
+    // Add hover effects for game cards
+    document.addEventListener('DOMContentLoaded', function() {
+      const gameCards = document.querySelectorAll('.game-card-lobby');
+      
+      gameCards.forEach(card => {
+        card.addEventListener('mouseenter', () => {
+          card.style.transform = 'translateY(-8px) scale(1.02)';
+        });
+        
+        card.addEventListener('mouseleave', () => {
+          card.style.transform = 'translateY(0) scale(1)';
+        });
+      });
+
+      // Initialize stats updates
+      updateStats();
+    });
+
+    // Add keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'g') {
+        document.querySelector('.game-card-lobby:nth-child(1) .btn-lobby-primary').click();
+      }
+      if (e.key === 'b') {
+        document.querySelector('.game-card-lobby:nth-child(2) .btn-lobby-primary').click();
+      }
+      if (e.key === 'p') {
+        document.querySelector('.game-card-lobby:nth-child(3) .btn-lobby-primary').click();
+      }
+    });
+  </script>
+
+</body>
+</html>

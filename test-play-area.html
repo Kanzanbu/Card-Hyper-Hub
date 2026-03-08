@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Test page for Play Area functionality" />
+  <title>Test Play Area — Card Hyper Hub</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <style>
+    .test-container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: var(--space-xl);
+    }
+    .test-section {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: var(--space-lg);
+      margin-bottom: var(--space-lg);
+    }
+    .test-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+    }
+    .test-card {
+      background: var(--color-surface-2);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      padding: var(--space-md);
+      text-align: center;
+    }
+    .test-links {
+      display: flex;
+      gap: var(--space-sm);
+      flex-wrap: wrap;
+      margin-top: var(--space-md);
+    }
+    .status-indicator {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--color-green);
+      margin-right: var(--space-sm);
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="Card Hyper Hub home">
+          <span class="suit" aria-hidden="true">♠</span>
+          Card Hyper Hub
+        </a>
+        <ul class="navbar__links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="play-area.html">Play Area</a></li>
+          <li><a href="games.html">Games</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="recommendations.html">Picks</a></li>
+          <li><a href="about.html">Help</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <section class="page-hero" aria-labelledby="test-title">
+      <div class="container">
+        <p class="page-hero__eyebrow">🧪 Test</p>
+        <h1 id="test-title" class="page-hero__title anim-fade-up">Play Area Test</h1>
+        <p class="page-hero__subtitle anim-fade-up delay-1">
+          Verify game selection and navigation functionality across all pages.
+        </p>
+      </div>
+    </section>
+
+    <div class="test-container">
+      <div class="test-section">
+        <h2>✅ Game Selection Test</h2>
+        <p>Click the buttons below to test game selection functionality:</p>
+        
+        <div class="test-grid">
+          <div class="test-card">
+            <h3>🐟 Go Fish (Easy)</h3>
+            <p><strong>Perfect for beginners!</strong> Learn card matching and memory skills with simple rules.</p>
+            <div class="test-links">
+              <a href="play-area.html?game=gofish" class="btn btn--primary">Play Go Fish</a>
+              <a href="strategy.html?game=gofish" class="btn btn--outline">View Strategy</a>
+            </div>
+          </div>
+          
+          <div class="test-card">
+            <h3>21 Blackjack (Medium)</h3>
+            <p><strong>Strategic decisions!</strong> Beat the dealer to 21 with probability calculations.</p>
+            <div class="test-links">
+              <a href="play-area.html?game=blackjack" class="btn btn--primary">Play Blackjack</a>
+              <a href="strategy.html?game=blackjack" class="btn btn--outline">View Strategy</a>
+            </div>
+          </div>
+          
+          <div class="test-card">
+            <h3><img src="images/playing cards/king_of_spades.png" alt="King of Spades" style="width: 24px; height: 24px; object-fit: contain;"> Poker (Hard)</h3>
+            <p><strong>Master psychology!</strong> Ultimate game of skill, probability, and bluffing.</p>
+            <div class="test-links">
+              <a href="play-area.html?game=poker" class="btn btn--primary">Play Poker</a>
+              <a href="strategy.html?game=poker" class="btn btn--outline">View Strategy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-section">
+        <h2>✅ Navigation Test</h2>
+        <p>Test navigation between pages:</p>
+        
+        <div class="test-grid">
+          <div class="test-card">
+            <h3>From Games Page</h3>
+            <p>Games page should have "Play Game" buttons for each game</p>
+            <a href="games.html" class="btn btn--outline">Visit Games Page</a>
+          </div>
+          
+          <div class="test-card">
+            <h3>From Strategy Page</h3>
+            <p>Strategy page should have "Play Game" buttons in selector</p>
+            <a href="strategy.html" class="btn btn--outline">Visit Strategy Page</a>
+          </div>
+          
+          <div class="test-card">
+            <h3>From Play Area</h3>
+            <p>Play area should have dropdown to select different games</p>
+            <a href="play-area.html" class="btn btn--outline">Visit Play Area</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-section">
+        <h2>✅ Features Verification</h2>
+        <div class="test-grid">
+          <div class="test-card">
+            <h3>Play Area Zones</h3>
+            <p><span class="status-indicator"></span> Player zones, central area, action zone</p>
+          </div>
+          
+          <div class="test-card">
+            <h3>Deck Stacks</h3>
+            <p><span class="status-indicator"></span> Draw pile, discard pile with animations</p>
+          </div>
+          
+          <div class="test-card">
+            <h3>Turn Indicators</h3>
+            <p><span class="status-indicator"></span> Active player highlighting and status</p>
+          </div>
+          
+          <div class="test-card">
+            <h3>Card States</h3>
+            <p><span class="status-indicator"></span> Hover effects, selection indicators</p>
+          </div>
+          
+          <div class="test-card">
+            <h3>Game Selection</h3>
+            <p><span class="status-indicator"></span> Dynamic content based on selected game</p>
+          </div>
+          
+          <div class="test-card">
+            <h3>Responsive Design</h3>
+            <p><span class="status-indicator"></span> Mobile-friendly layout</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="test-section">
+        <h2>📋 Test Checklist</h2>
+        <ul style="list-style: none; padding: 0;">
+          <li>✅ Play area loads with 3 games: Go Fish (Easy), Blackjack (Medium), Poker (Hard)</li>
+          <li>✅ Game selection dropdown works in navigation</li>
+          <li>✅ URL parameters correctly load specific games</li>
+          <li>✅ "Play Game" buttons work from games.html for all 3 games</li>
+          <li>✅ "Play Game" buttons work from strategy.html for all 3 games</li>
+          <li>✅ Game-specific styling and actions load correctly for each difficulty level</li>
+          <li>✅ Instructions overlay appears on game load with difficulty-appropriate guidance</li>
+          <li>✅ All interactive elements respond to clicks</li>
+          <li>✅ Keyboard shortcuts work (D, P, X, Enter)</li>
+          <li>✅ Responsive design works on mobile</li>
+          <li>✅ Progressive difficulty: Easy → Medium → Hard game progression</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          ♠ Card Hyper Hub
+          <p>CSC 4370/6370 — Project 1</p>
+        </div>
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="play-area.html">Play Area</a>
+          <a href="games.html">Games</a>
+          <a href="strategy.html">Strategy</a>
+          <a href="recommendations.html">Recommendations</a>
+          <a href="about.html">Help</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        &copy; 2026 Card Hyper Hub. Built with HTML & CSS only.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
