@@ -47,19 +47,19 @@
     <!-- Game Selector -->
     <section aria-label="Select a game" style="padding: var(--space-lg) 0; border-bottom: 1px solid var(--color-border);">
       <div class="container">
-        <div role="tablist" aria-label="Select game strategy" style="display:flex; gap:var(--space-sm); flex-wrap:wrap;">
-          <button role="tab" class="btn btn--outline game-tab active" data-game="blackjack" aria-selected="true" aria-controls="strategy-panel">
+        <div style="display:flex; gap:var(--space-sm); flex-wrap:wrap;">
+          <a href="strategy.html?game=blackjack" class="btn btn--outline active" style="padding:4px 14px; font-size:0.8rem;">
             Blackjack
-          </button>
-          <button role="tab" class="btn btn--outline game-tab" data-game="poker" aria-selected="false" aria-controls="strategy-panel">
+          </a>
+          <a href="strategy.html?game=poker" class="btn btn--outline" style="padding:4px 14px; font-size:0.8rem;">
             Poker
-          </button>
-          <button role="tab" class="btn btn--outline game-tab" data-game="rummy" aria-selected="false" aria-controls="strategy-panel">
+          </a>
+          <a href="strategy.html?game=rummy" class="btn btn--outline" style="padding:4px 14px; font-size:0.8rem;">
             Rummy
-          </button>
-          <button role="tab" class="btn btn--outline game-tab" data-game="gofish" aria-selected="false" aria-controls="strategy-panel">
+          </a>
+          <a href="strategy.html?game=gofish" class="btn btn--outline" style="padding:4px 14px; font-size:0.8rem;">
             Go Fish
-          </button>
+          </a>
         </div>
       </div>
     </section>
@@ -215,6 +215,5 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
 </body>
 </html>

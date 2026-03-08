@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Get personalized card game recommendations based on your preferences and experience level." />
+  <title>Recommendations — Card Gaming Hub</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+</head>
+<body>
+
+  <!-- ── Navigation ── -->
+  <header role="banner">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="Card Gaming Hub home">
+          <span class="suit" aria-hidden="true">♠</span>
+          Card Gaming Hub
+        </a>
+        <ul class="navbar__links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="games.html">Games</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="recommendations.html" class="active" aria-current="page">Picks</a></li>
+          <li><a href="about.html">Help</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+
+    <!-- Page Hero -->
+    <section class="page-hero" aria-labelledby="rec-title">
+      <div class="container">
+        <p class="page-hero__eyebrow">✨ Get Picks</p>
+        <h1 id="rec-title" class="page-hero__title anim-fade-up">Personalized Recommendations</h1>
+        <p class="page-hero__subtitle anim-fade-up delay-1">
+          Tell us about your preferences and we'll suggest the perfect card game for you.
+        </p>
+      </div>
+    </section>
+
+    <!-- Preference Form -->
+    <section class="section" aria-labelledby="form-title">
+      <div class="container" style="max-width: 720px;">
+        <h2 id="form-title" class="anim-fade-up" style="margin-bottom: var(--space-xl);">Your Preferences</h2>
+        
+        <form id="pref-form" novalidate>
+          <div class="pref-group anim-fade-up delay-1">
+            <label class="pref-group__label" for="exp-level">Experience Level</label>
+            <div class="pref-options" role="radiogroup" aria-labelledby="exp-level">
+              <div class="pref-option">
+                <input type="radio" id="exp-beginner" name="experience" value="beginner" required />
+                <label for="exp-beginner">Beginner</label>
+              </div>
+              <div class="pref-option">
+                <input type="radio" id="exp-intermediate" name="experience" value="intermediate" />
+                <label for="exp-intermediate">Intermediate</label>
+              </div>
+              <div class="pref-option">
+                <input type="radio" id="exp-advanced" name="experience" value="advanced" />
+                <label for="exp-advanced">Advanced</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="pref-group anim-fade-up delay-2">
+            <label class="pref-group__label" for="player-count">Player Count</label>
+            <div class="pref-options" role="radiogroup" aria-labelledby="player-count">
+              <div class="pref-option">
+                <input type="radio" id="players-1" name="players" value="1" required />
+                <label for="players-1">Solo (1)</label>
+              </div>
+              <div class="pref-option">
+                <input type="radio" id="players-2" name="players" value="2" />
+                <label for="players-2">Pair (2)</label>
+              </div>
+              <div class="pref-option">
+                <input type="radio" id="players-3-4" name="players" value="3-4" />
+                <label for="players-3-4">Small Group (3-4)</label>
+              </div>
+              <div class="pref-option">
+                <input type="radio" id="players-5+" name="players" value="5+" />
+                <label for="players-5+">Big Group (5+)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="pref-group anim-fade-up delay-3">
+            <label class="pref-group__label" for="vibe">Game Vibe</label>
+            <div class="pref-options" role="group" aria-labelledby="vibe">
+              <div class="pref-option">
+                <input type="checkbox" id="vibe-relaxed" name="vibe" value="relaxed" />
+                <label for="vibe-relaxed">Relaxed</label>
+              </div>
+              <div class="pref-option">
+                <input type="checkbox" id="vibe-competitive" name="vibe" value="competitive" />
+                <label for="vibe-competitive">Competitive</label>
+              </div>
+              <div class="pref-option">
+                <input type="checkbox" id="vibe-strategic" name="vibe" value="strategic" />
+                <label for="vibe-strategic">Strategic</label>
+              </div>
+              <div class="pref-option">
+                <input type="checkbox" id="vibe-social" name="vibe" value="social" />
+                <label for="vibe-social">Social</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="pref-group anim-fade-up delay-4">
+            <label class="pref-group__label" for="session">Session Length</label>
+            <div class="pref-options" role="radiogroup" aria-labelledby="session">
+              <div class="pref-option">
+                <input type="radio" id="session-short" name="session" value="short" required />
+                <label for="session-short">Quick (5-15 min)</label>
+              </div>
+              <div class="pref-option">
+                <input type="radio" id="session-medium" name="session" value="medium" />
+                <label for="session-medium">Medium (15-30 min)</label>
+              </div>
+              <div class="pref-option">
+                <input type="radio" id="session-long" name="session" value="long" />
+                <label for="session-long">Long (30+ min)</label>
+              </div>
+            </div>
+          </div>
+
+          <div class="anim-fade-up delay-5" style="margin-top: var(--space-xl); display:flex; gap:var(--space-md); flex-wrap:wrap;">
+            <button type="submit" class="btn btn--primary btn--lg">
+              Get My Recommendations
+            </button>
+            <button type="button" id="reset-btn" class="btn btn--outline btn--lg">
+              Reset
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="section" id="results-section" aria-labelledby="results-title" style="background: var(--color-surface); border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border);">
+      <div class="container">
+        <h2 id="results-title" class="anim-fade-up" style="margin-bottom: var(--space-lg);">Your Game Picks</h2>
+        <div id="results-container" class="card-grid card-grid--2col" aria-live="polite">
+          <!-- Static recommendation cards based on common user preferences -->
+          <div class="rec-card anim-fade-up delay-1">
+            <div class="rec-card__confidence">
+              <span class="confidence-label">95% Match</span>
+              <div class="confidence-bar">
+                <div class="confidence-bar__fill" style="width: 95%"></div>
+              </div>
+            </div>
+            <h3 style="font-size:1.1rem; margin:var(--space-sm) 0 var(--space-xs);">Go Fish</h3>
+            <span class="badge badge--easy" style="margin-bottom: var(--space-sm);">Easy</span>
+            <div class="rec-card__why">
+              <strong>Why this fits:</strong> Perfect for beginners and large groups with simple rules and quick rounds.
+            </div>
+          </div>
+
+          <div class="rec-card anim-fade-up delay-2">
+            <div class="rec-card__confidence">
+              <span class="confidence-label">85% Match</span>
+              <div class="confidence-bar">
+                <div class="confidence-bar__fill" style="width: 85%"></div>
+              </div>
+            </div>
+            <h3 style="font-size:1.1rem; margin:var(--space-sm) 0 var(--space-xs);">Solitaire</h3>
+            <span class="badge badge--easy" style="margin-bottom: var(--space-sm);">Easy</span>
+            <div class="rec-card__why">
+              <strong>Why this fits:</strong> Ideal for solo play with strategic depth and flexible session lengths.
+            </div>
+          </div>
+
+          <div class="rec-card anim-fade-up delay-3">
+            <div class="rec-card__confidence">
+              <span class="confidence-label">75% Match</span>
+              <div class="confidence-bar">
+                <div class="confidence-bar__fill" style="width: 75%"></div>
+              </div>
+            </div>
+            <h3 style="font-size:1.1rem; margin:var(--space-sm) 0 var(--space-xs);">Blackjack</h3>
+            <span class="badge badge--medium" style="margin-bottom: var(--space-sm);">Medium</span>
+            <div class="rec-card__why">
+              <strong>Why this fits:</strong> Balances luck and strategy with quick decision-making for small to large groups.
+            </div>
+          </div>
+
+          <div class="rec-card anim-fade-up delay-4">
+            <div class="rec-card__confidence">
+              <span class="confidence-label">65% Match</span>
+              <div class="confidence-bar">
+                <div class="confidence-bar__fill" style="width: 65%"></div>
+              </div>
+            </div>
+            <h3 style="font-size:1.1rem; margin:var(--space-sm) 0 var(--space-xs);">Rummy</h3>
+            <span class="badge badge--medium" style="margin-bottom: var(--space-sm);">Medium</span>
+            <div class="rec-card__why">
+              <strong>Why this fits:</strong> Engaging meld-building mechanics with moderate complexity for small groups.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          ♠ Card Gaming Hub
+          <p>CSC 4370/6370 — Project 1</p>
+        </div>
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="games.html">Games</a>
+          <a href="strategy.html">Strategy</a>
+          <a href="recommendations.html">Recommendations</a>
+          <a href="about.html">Help</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        &copy; 2026 Card Gaming Hub. Built with HTML & CSS only.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

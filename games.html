@@ -48,10 +48,10 @@
     <section aria-label="Filter games" style="border-bottom: 1px solid var(--color-border); padding: var(--space-md) 0;">
       <div class="container" style="display:flex; gap:var(--space-sm); flex-wrap:wrap; align-items:center;">
         <span style="font-size:0.75rem; font-weight:600; letter-spacing:0.1em; text-transform:uppercase; color:var(--color-muted); margin-right:var(--space-sm);">Filter:</span>
-        <button class="btn btn--outline filter-btn active" data-filter="all" aria-pressed="true" style="padding:4px 14px; font-size:0.8rem;">All</button>
-        <button class="btn btn--outline filter-btn" data-filter="easy" aria-pressed="false" style="padding:4px 14px; font-size:0.8rem;">Easy</button>
-        <button class="btn btn--outline filter-btn" data-filter="medium" aria-pressed="false" style="padding:4px 14px; font-size:0.8rem;">Medium</button>
-        <button class="btn btn--outline filter-btn" data-filter="hard" aria-pressed="false" style="padding:4px 14px; font-size:0.8rem;">Hard</button>
+        <a href="games.html" class="btn btn--outline active" style="padding:4px 14px; font-size:0.8rem;">All</a>
+        <a href="games.html?difficulty=easy" class="btn btn--outline" style="padding:4px 14px; font-size:0.8rem;">Easy</a>
+        <a href="games.html?difficulty=medium" class="btn btn--outline" style="padding:4px 14px; font-size:0.8rem;">Medium</a>
+        <a href="games.html?difficulty=hard" class="btn btn--outline" style="padding:4px 14px; font-size:0.8rem;">Hard</a>
       </div>
     </section>
 
@@ -60,9 +60,8 @@
       <div class="container">
         <h2 id="all-games-title" class="visually-hidden">All Games</h2>
         <div class="card-grid" id="games-grid" role="list">
-
-          <!-- Poker -->
-          <article class="game-card anim-fade-up delay-1" role="listitem" data-difficulty="hard">
+          <!-- All Games Section -->
+          <article class="game-card anim-fade-up delay-1" role="listitem">
             <div class="game-card__visual" style="background: linear-gradient(135deg, #1a1028, #2d1040);">
               <span aria-hidden="true" style="font-size:3.5rem;">♠</span>
             </div>
@@ -76,8 +75,7 @@
             </div>
           </article>
 
-          <!-- Blackjack -->
-          <article class="game-card anim-fade-up delay-2" role="listitem" data-difficulty="medium">
+          <article class="game-card anim-fade-up delay-2" role="listitem">
             <div class="game-card__visual" style="background: linear-gradient(135deg, #102a1a, #1a4030);">
               <span aria-hidden="true" style="font-size:3.5rem;">21</span>
             </div>
@@ -91,8 +89,7 @@
             </div>
           </article>
 
-          <!-- Go Fish -->
-          <article class="game-card anim-fade-up delay-3" role="listitem" data-difficulty="easy">
+          <article class="game-card anim-fade-up delay-3" role="listitem">
             <div class="game-card__visual" style="background: linear-gradient(135deg, #0a2030, #103050);">
               <span aria-hidden="true" style="font-size:3rem;">🐟</span>
             </div>
@@ -106,8 +103,7 @@
             </div>
           </article>
 
-          <!-- Solitaire -->
-          <article class="game-card anim-fade-up delay-1" role="listitem" data-difficulty="easy">
+          <article class="game-card anim-fade-up delay-1" role="listitem">
             <div class="game-card__visual" style="background: linear-gradient(135deg, #201020, #301828);">
               <span aria-hidden="true" style="font-size:3rem;">♥ ♣</span>
             </div>
@@ -121,8 +117,7 @@
             </div>
           </article>
 
-          <!-- Rummy -->
-          <article class="game-card anim-fade-up delay-2" role="listitem" data-difficulty="medium">
+          <article class="game-card anim-fade-up delay-2" role="listitem">
             <div class="game-card__visual" style="background: linear-gradient(135deg, #201800, #302200);">
               <span aria-hidden="true" style="font-size:3rem;">♦ ♠</span>
             </div>
@@ -136,8 +131,7 @@
             </div>
           </article>
 
-          <!-- Bridge -->
-          <article class="game-card anim-fade-up delay-3" role="listitem" data-difficulty="hard">
+          <article class="game-card anim-fade-up delay-3" role="listitem">
             <div class="game-card__visual" style="background: linear-gradient(135deg, #101020, #181828);">
               <span aria-hidden="true" style="font-size:3rem;">🤝</span>
             </div>
@@ -150,7 +144,6 @@
               </div>
             </div>
           </article>
-
         </div>
       </div>
     </section>
@@ -179,6 +172,5 @@
     </div>
   </footer>
 
-  <script src="js/main.js"></script>
 </body>
 </html>
