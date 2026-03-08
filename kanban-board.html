@@ -4,8 +4,12 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Kanban Board - Project Management Dashboard" />
-  <title>Kanban Board - Project Management</title>
-  
+  <title>Kanban Board — Card Hyper Hub</title>
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/layout.css" />
+  <link rel="stylesheet" href="css/components.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+
   <!-- Custom CSS for Kanban Board -->
   <style>
     /* ── CSS Custom Properties ── */
@@ -206,6 +210,7 @@
       color: var(--color-muted);
       margin-bottom: var(--space-sm);
       display: -webkit-box;
+      line-clamp: 2;
       -webkit-line-clamp: 2;
       -webkit-box-orient: vertical;
       overflow: hidden;
@@ -349,7 +354,29 @@
 </head>
 <body>
 
-  <div class="kanban-container">
+  <!-- ── Navigation ── -->
+  <header role="banner">
+    <nav class="navbar" aria-label="Main navigation">
+      <div class="navbar__inner">
+        <a href="index.html" class="navbar__logo" aria-label="Card Hyper Hub home">
+          <span class="suit" aria-hidden="true">♠</span>
+          Card Hyper Hub
+        </a>
+        <ul class="navbar__links" role="list">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="game-lobby.html">Game Lobby</a></li>
+          <li><a href="games.html">Games</a></li>
+          <li><a href="strategy.html">Strategy</a></li>
+          <li><a href="recommendations.html">Picks</a></li>
+          <li><a href="kanban-board.html" class="active" aria-current="page">Kanban</a></li>
+          <li><a href="about.html">Help</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main id="main-content">
+    <div class="kanban-container">
     <!-- Header -->
     <div class="kanban-header">
       <div>
@@ -423,7 +450,32 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> <!-- .kanban-container -->
+  </main>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="site-footer__inner">
+        <div class="site-footer__brand">
+          ♠ Card Hyper Hub
+          <p>CSC 4370/6370 — Project 1</p>
+        </div>
+        <nav class="site-footer__nav" aria-label="Footer navigation">
+          <a href="index.html">Home</a>
+          <a href="game-lobby.html">Game Lobby</a>
+          <a href="games.html">Games</a>
+          <a href="strategy.html">Strategy</a>
+          <a href="recommendations.html">Recommendations</a>
+          <a href="kanban-board.html">Kanban</a>
+          <a href="about.html">Help</a>
+        </nav>
+      </div>
+      <div class="site-footer__bottom">
+        &copy; 2026 Card Hyper Hub. Built with HTML &amp; CSS only.
+      </div>
+    </div>
+  </footer>
 
   <script>
     // Sample data for the Kanban board - Card Hyper Hub Website Progress
