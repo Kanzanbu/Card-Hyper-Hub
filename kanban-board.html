@@ -1,0 +1,678 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Kanban Board - Project Management Dashboard" />
+  <title>Kanban Board - Project Management</title>
+  
+  <!-- Custom CSS for Kanban Board -->
+  <style>
+    /* ── CSS Custom Properties ── */
+    :root {
+      /* Color Palette - Matching your website */
+      --color-bg:        #0d0d0f;
+      --color-surface:   #16161a;
+      --color-surface-2: #1e1e24;
+      --color-border:    #2a2a35;
+      --color-accent:    #c9a84c;
+      --color-accent-dim:#7a6030;
+      --color-red:       #c94c4c;
+      --color-green:     #4cc98a;
+      --color-blue:      #4c8cc9;
+      --color-purple:    #8c4cc9;
+      --color-text:      #e8e4d9;
+      --color-muted:     #7a7880;
+
+      /* Typography */
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body:    'DM Sans', sans-serif;
+
+      /* Spacing Scale */
+      --space-xs:  0.25rem;
+      --space-sm:  0.5rem;
+      --space-md:  1rem;
+      --space-lg:  2rem;
+      --space-xl:  4rem;
+      --space-2xl: 8rem;
+
+      /* Radii */
+      --radius-sm: 4px;
+      --radius-md: 8px;
+      --radius-lg: 16px;
+      --radius-xl: 24px;
+
+      /* Shadows */
+      --shadow-card: 0 4px 24px rgba(0,0,0,0.5);
+      --shadow-glow: 0 0 32px rgba(201,168,76,0.15);
+
+      /* Transitions */
+      --transition-fast: 150ms ease;
+      --transition-base: 300ms ease;
+      --transition-slow: 600ms ease;
+    }
+
+    /* ── Reset ── */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      font-size: 16px;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── Layout ── */
+    .kanban-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: var(--space-xl);
+    }
+
+    .kanban-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: var(--space-lg);
+      padding-bottom: var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .kanban-title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 4vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: -0.02em;
+    }
+
+    .kanban-stats {
+      display: flex;
+      gap: var(--space-md);
+      font-size: 0.9rem;
+      color: var(--color-muted);
+    }
+
+    .stat-item {
+      background: var(--color-surface);
+      padding: var(--space-sm) var(--space-md);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--color-border);
+    }
+
+    .stat-value {
+      font-weight: 700;
+      color: var(--color-text);
+    }
+
+    /* ── Kanban Board ── */
+    .kanban-board {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-lg);
+      min-height: 600px;
+    }
+
+    .kanban-column {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      display: flex;
+      flex-direction: column;
+      min-height: 500px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kanban-column-header {
+      padding: var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: var(--color-surface-2);
+    }
+
+    .column-title {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .column-count {
+      background: rgba(201,168,76,0.15);
+      color: var(--color-accent);
+      border: 1px solid rgba(201,168,76,0.3);
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    .kanban-column-content {
+      padding: var(--space-md);
+      flex: 1;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    /* ── Cards ── */
+    .kanban-card {
+      background: var(--color-bg);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-md);
+      cursor: grab;
+      transition: all var(--transition-fast);
+      box-shadow: var(--shadow-card);
+      position: relative;
+    }
+
+    .kanban-card:hover {
+      border-color: var(--color-accent-dim);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+    }
+
+    .kanban-card:active {
+      cursor: grabbing;
+      transform: translateY(-1px);
+    }
+
+    .card-title {
+      font-weight: 600;
+      margin-bottom: var(--space-sm);
+      font-size: 0.95rem;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: var(--color-muted);
+      margin-bottom: var(--space-sm);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: var(--space-sm);
+    }
+
+    .card-priority {
+      font-size: 0.7rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 2px 6px;
+      border-radius: 4px;
+      border: 1px solid transparent;
+    }
+
+    .priority-high {
+      background: rgba(201,76,76,0.15);
+      color: var(--color-red);
+      border-color: rgba(201,76,76,0.3);
+    }
+
+    .priority-medium {
+      background: rgba(201,168,76,0.15);
+      color: var(--color-accent);
+      border-color: rgba(201,168,76,0.3);
+    }
+
+    .priority-low {
+      background: rgba(76,201,138,0.15);
+      color: var(--color-green);
+      border-color: rgba(76,201,138,0.3);
+    }
+
+    .card-due {
+      font-size: 0.7rem;
+      color: var(--color-muted);
+    }
+
+    .card-tags {
+      display: flex;
+      gap: var(--space-xs);
+      margin-top: var(--space-sm);
+      flex-wrap: wrap;
+    }
+
+    .card-tag {
+      font-size: 0.65rem;
+      padding: 1px 6px;
+      border-radius: 999px;
+      border: 1px solid var(--color-border);
+      color: var(--color-muted);
+      background: var(--color-surface);
+    }
+
+    /* ── Column Styles ── */
+    .column-backlog .kanban-column-header {
+      border-left: 4px solid var(--color-blue);
+    }
+
+    .column-todo .kanban-column-header {
+      border-left: 4px solid var(--color-accent);
+    }
+
+    .column-inprogress .kanban-column-header {
+      border-left: 4px solid var(--color-purple);
+    }
+
+    .column-done .kanban-column-header {
+      border-left: 4px solid var(--color-green);
+    }
+
+    /* ── Drop Zone ── */
+    .kanban-column-content.drag-over {
+      background: rgba(201,168,76,0.05);
+      border: 2px dashed var(--color-accent-dim);
+      border-radius: var(--radius-md);
+    }
+
+    /* ── Typography ── */
+    h1, h2, h3, h4 {
+      font-family: var(--font-display);
+      line-height: 1.2;
+    }
+
+    h1 { font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 900; }
+    h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 700; }
+    h3 { font-size: clamp(1.2rem, 2.5vw, 1.8rem); font-weight: 700; }
+    h4 { font-size: 1.1rem; font-weight: 600; }
+
+    p { max-width: 65ch; }
+
+    /* ── Responsive ── */
+    @media (max-width: 1024px) {
+      .kanban-board {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .kanban-container {
+        padding: var(--space-lg);
+      }
+      
+      .kanban-board {
+        grid-template-columns: 1fr;
+      }
+      
+      .kanban-header {
+        flex-direction: column;
+        gap: var(--space-md);
+        align-items: flex-start;
+      }
+    }
+
+    /* ── Animations ── */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .kanban-card {
+      animation: fadeInUp 0.3s ease-out;
+    }
+
+    /* ── Utility ── */
+    .accent { color: var(--color-accent); }
+  </style>
+</head>
+<body>
+
+  <div class="kanban-container">
+    <!-- Header -->
+    <div class="kanban-header">
+      <div>
+        <h1 class="kanban-title">Project <span class="accent">Management</span></h1>
+        <p style="color: var(--color-muted); margin-top: var(--space-sm);">Card Game Development Sprint - Due March 8, 2026</p>
+      </div>
+      <div class="kanban-stats">
+        <div class="stat-item">
+          Total Tasks: <span class="stat-value" id="total-tasks">0</span>
+        </div>
+        <div class="stat-item">
+          In Progress: <span class="stat-value" id="in-progress-count">0</span>
+        </div>
+        <div class="stat-item">
+          Completed: <span class="stat-value" id="completed-count">0</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kanban Board -->
+    <div class="kanban-board" id="kanban-board">
+      <!-- Backlog Column -->
+      <div class="kanban-column column-backlog" data-status="backlog">
+        <div class="kanban-column-header">
+          <div class="column-title">
+            📋 Backlog
+          </div>
+          <span class="column-count" id="backlog-count">0</span>
+        </div>
+        <div class="kanban-column-content" data-status="backlog">
+          <!-- Cards will be inserted here -->
+        </div>
+      </div>
+
+      <!-- To Do Column -->
+      <div class="kanban-column column-todo" data-status="todo">
+        <div class="kanban-column-header">
+          <div class="column-title">
+            ✅ To Do
+          </div>
+          <span class="column-count" id="todo-count">0</span>
+        </div>
+        <div class="kanban-column-content" data-status="todo">
+          <!-- Cards will be inserted here -->
+        </div>
+      </div>
+
+      <!-- In Progress Column -->
+      <div class="kanban-column column-inprogress" data-status="inprogress">
+        <div class="kanban-column-header">
+          <div class="column-title">
+            🔄 In Progress
+          </div>
+          <span class="column-count" id="inprogress-count">0</span>
+        </div>
+        <div class="kanban-column-content" data-status="inprogress">
+          <!-- Cards will be inserted here -->
+        </div>
+      </div>
+
+      <!-- Done Column -->
+      <div class="kanban-column column-done" data-status="done">
+        <div class="kanban-column-header">
+          <div class="column-title">
+            🎉 Done
+          </div>
+          <span class="column-count" id="done-count">0</span>
+        </div>
+        <div class="kanban-column-content" data-status="done">
+          <!-- Cards will be inserted here -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Sample data for the Kanban board - Card Gaming Hub Website Progress
+    const initialTasks = [
+      {
+        id: 1,
+        title: "Homepage Design & Development",
+        description: "Create main landing page with hero section, featured games, and navigation",
+        priority: "high",
+        dueDate: "2026-03-01",
+        tags: ["frontend", "design"],
+        status: "done"
+      },
+      {
+        id: 2,
+        title: "Games Library Page",
+        description: "Build games.html with filter system, game cards, and strategy links",
+        priority: "high",
+        dueDate: "2026-03-02",
+        tags: ["frontend", "content"],
+        status: "done"
+      },
+      {
+        id: 3,
+        title: "Strategy Table Page",
+        description: "Create interactive strategy guides with turn-by-turn breakdowns",
+        priority: "high",
+        dueDate: "2026-03-03",
+        tags: ["frontend", "content"],
+        status: "done"
+      },
+      {
+        id: 4,
+        title: "CSS Styling System",
+        description: "Develop comprehensive CSS architecture with variables, components, and animations",
+        priority: "high",
+        dueDate: "2026-03-02",
+        tags: ["styling", "architecture"],
+        status: "done"
+      },
+      {
+        id: 5,
+        title: "Navigation & Footer",
+        description: "Implement consistent navigation and footer across all pages",
+        priority: "medium",
+        dueDate: "2026-03-01",
+        tags: ["frontend", "ux"],
+        status: "done"
+      },
+      {
+        id: 6,
+        title: "Recommendations Page",
+        description: "Build personalized game recommendation system with preference form",
+        priority: "medium",
+        dueDate: "2026-03-06",
+        tags: ["frontend", "logic"],
+        status: "todo"
+      },
+      {
+        id: 7,
+        title: "About/Help Page",
+        description: "Create help documentation and project information page",
+        priority: "medium",
+        dueDate: "2026-03-05",
+        tags: ["content", "documentation"],
+        status: "todo"
+      },
+      {
+        id: 8,
+        title: "JavaScript Functionality",
+        description: "Add interactive features like tabs, filters, and form handling",
+        priority: "medium",
+        dueDate: "2026-03-07",
+        tags: ["javascript", "interactivity"],
+        status: "inprogress"
+      },
+      {
+        id: 9,
+        title: "Mobile Responsive Testing",
+        description: "Test and optimize all pages for mobile and tablet devices",
+        priority: "medium",
+        dueDate: "2026-03-08",
+        tags: ["responsive", "testing"],
+        status: "inprogress"
+      },
+      {
+        id: 10,
+        title: "Final QA & Polish",
+        description: "Comprehensive testing, bug fixes, and final design refinements",
+        priority: "high",
+        dueDate: "2026-03-08",
+        tags: ["testing", "polish"],
+        status: "backlog"
+      }
+    ];
+
+    // State management
+    let tasks = [...initialTasks];
+
+    // DOM elements
+    const board = document.getElementById('kanban-board');
+    const columnContents = {
+      backlog: document.querySelector('.kanban-column-content[data-status="backlog"]'),
+      todo: document.querySelector('.kanban-column-content[data-status="todo"]'),
+      inprogress: document.querySelector('.kanban-column-content[data-status="inprogress"]'),
+      done: document.querySelector('.kanban-column-content[data-status="done"]')
+    };
+
+    const counters = {
+      total: document.getElementById('total-tasks'),
+      inProgress: document.getElementById('in-progress-count'),
+      completed: document.getElementById('completed-count'),
+      backlog: document.getElementById('backlog-count'),
+      todo: document.getElementById('todo-count'),
+      inprogress: document.getElementById('inprogress-count'),
+      done: document.getElementById('done-count')
+    };
+
+    // Initialize the board
+    function init() {
+      renderBoard();
+      setupDragAndDrop();
+      updateCounters();
+    }
+
+    // Render all tasks on the board
+    function renderBoard() {
+      // Clear all columns
+      Object.values(columnContents).forEach(column => {
+        column.innerHTML = '';
+      });
+
+      // Render each task in its respective column
+      tasks.forEach(task => {
+        const card = createCardElement(task);
+        columnContents[task.status].appendChild(card);
+      });
+    }
+
+    // Create a card DOM element
+    function createCardElement(task) {
+      const card = document.createElement('div');
+      card.className = 'kanban-card';
+      card.draggable = true;
+      card.dataset.id = task.id;
+
+      // Priority class
+      let priorityClass = '';
+      if (task.priority === 'high') priorityClass = 'priority-high';
+      else if (task.priority === 'medium') priorityClass = 'priority-medium';
+      else priorityClass = 'priority-low';
+
+      card.innerHTML = `
+        <div class="card-title">${task.title}</div>
+        <div class="card-desc">${task.description}</div>
+        <div class="card-meta">
+          <span class="card-priority ${priorityClass}">${task.priority}</span>
+          <span class="card-due">Due: ${task.dueDate}</span>
+        </div>
+        <div class="card-tags">
+          ${task.tags.map(tag => `<span class="card-tag">${tag}</span>`).join('')}
+        </div>
+      `;
+
+      // Add drag event listeners
+      card.addEventListener('dragstart', handleDragStart);
+      card.addEventListener('dragend', handleDragEnd);
+
+      return card;
+    }
+
+    // Drag and Drop functionality
+    function setupDragAndDrop() {
+      // Add event listeners to column contents
+      Object.values(columnContents).forEach(column => {
+        column.addEventListener('dragover', handleDragOver);
+        column.addEventListener('dragleave', handleDragLeave);
+        column.addEventListener('drop', handleDrop);
+      });
+    }
+
+    let draggedCard = null;
+
+    function handleDragStart(e) {
+      draggedCard = this;
+      e.dataTransfer.effectAllowed = 'move';
+      e.dataTransfer.setData('text/plain', this.dataset.id);
+      this.style.opacity = '0.5';
+    }
+
+    function handleDragEnd(e) {
+      this.style.opacity = '1';
+      draggedCard = null;
+      
+      // Remove drag over class from all columns
+      Object.values(columnContents).forEach(column => {
+        column.classList.remove('drag-over');
+      });
+    }
+
+    function handleDragOver(e) {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      this.classList.add('drag-over');
+    }
+
+    function handleDragLeave(e) {
+      this.classList.remove('drag-over');
+    }
+
+    function handleDrop(e) {
+      e.preventDefault();
+      this.classList.remove('drag-over');
+
+      if (!draggedCard) return;
+
+      const taskId = parseInt(draggedCard.dataset.id);
+      const newStatus = this.dataset.status;
+
+      // Update task status
+      const taskIndex = tasks.findIndex(task => task.id === taskId);
+      if (taskIndex > -1) {
+        tasks[taskIndex].status = newStatus;
+        renderBoard();
+        updateCounters();
+      }
+    }
+
+    // Update counters
+    function updateCounters() {
+      const counts = {
+        backlog: tasks.filter(t => t.status === 'backlog').length,
+        todo: tasks.filter(t => t.status === 'todo').length,
+        inprogress: tasks.filter(t => t.status === 'inprogress').length,
+        done: tasks.filter(t => t.status === 'done').length
+      };
+
+      counters.total.textContent = tasks.length;
+      counters.inProgress.textContent = counts.inprogress;
+      counters.completed.textContent = counts.done;
+      
+      counters.backlog.textContent = counts.backlog;
+      counters.todo.textContent = counts.todo;
+      counters.inprogress.textContent = counts.inprogress;
+      counters.done.textContent = counts.done;
+    }
+
+    // Initialize the application
+    init();
+  </script>
+</body>
+</html>
